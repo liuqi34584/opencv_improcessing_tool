@@ -51,8 +51,7 @@ border:3px solid black;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-radius: 12px;
-border:1px solid black;</string>
+     <string notr="true"/>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -75,7 +74,7 @@ border:1px solid black;</string>
      <rect>
       <x>20</x>
       <y>420</y>
-      <width>801</width>
+      <width>771</width>
       <height>201</height>
      </rect>
     </property>
@@ -93,7 +92,7 @@ border:5px solid black;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="label_titile">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -118,7 +117,7 @@ border:5px solid black;</string>
    <widget class="QPushButton" name="pushButton_imtwovalue">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>170</x>
       <y>550</y>
       <width>91</width>
       <height>41</height>
@@ -142,8 +141,7 @@ border:3px solid black;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-radius: 12px;
-border:1px solid black;</string>
+     <string notr="true"/>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -161,7 +159,7 @@ border:1px solid black;</string>
    <widget class="QLabel" name="twovalue_box">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>160</x>
       <y>440</y>
       <width>221</width>
       <height>161</height>
@@ -187,7 +185,7 @@ border:3px solid black;</string>
    <widget class="QComboBox" name="twovalue_cB_value">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>170</x>
       <y>450</y>
       <width>201</width>
       <height>31</height>
@@ -1477,18 +1475,18 @@ border:3px solid black;</string>
      </property>
     </item>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="label_resize">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>460</y>
-      <width>231</width>
-      <height>81</height>
+      <x>390</x>
+      <y>443</y>
+      <width>388</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
-border:1px solid black;</string>
+border:3px solid black;</string>
     </property>
     <property name="text">
      <string/>
@@ -1497,7 +1495,7 @@ border:1px solid black;</string>
    <widget class="QComboBox" name="twovalue_cB_Max">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>170</x>
       <y>480</y>
       <width>201</width>
       <height>31</height>
@@ -2790,7 +2788,7 @@ border:1px solid black;</string>
    <widget class="QComboBox" name="twovalue_cB_type">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>170</x>
       <y>510</y>
       <width>201</width>
       <height>31</height>
@@ -2879,7 +2877,7 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pushButton_gray_value">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>280</x>
       <y>550</y>
       <width>91</width>
       <height>41</height>
@@ -2910,11 +2908,152 @@ border:3px solid black;</string>
      <string>右图置为原图</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pb_resize">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>450</y>
+      <width>71</width>
+      <height>56</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>重设大小</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lE_resize_gao">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>450</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>512</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lE_resize_kuan">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>450</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>512</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_resize_gao">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>450</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>高:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_resize_gao_2">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>450</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>宽:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cB_resize_type">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>480</y>
+      <width>291</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="currentIndex">
+     <number>4</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>最近邻插值:INTER_NEAREST</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>双线性插值:INTER_LINEAR</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>像素关系重采样:INTER_AREA</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>4x4邻域双3次插值:INTER_CUBIC</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>8x8邻域Lanczos插值:INTER_LANCZOS4</string>
+     </property>
+    </item>
+   </widget>
+   <zorder>label_resize</zorder>
    <zorder>imagearea</zorder>
-   <zorder>label_4</zorder>
    <zorder>twovalue_box</zorder>
    <zorder>image</zorder>
-   <zorder>label</zorder>
+   <zorder>label_titile</zorder>
    <zorder>pB_load_one</zorder>
    <zorder>newimage</zorder>
    <zorder>pushButton_imtwovalue</zorder>
@@ -2926,6 +3065,12 @@ border:3px solid black;</string>
    <zorder>pB_save_dir</zorder>
    <zorder>pushButton_gray_value</zorder>
    <zorder>pB_turn_image</zorder>
+   <zorder>pb_resize</zorder>
+   <zorder>label_resize_gao</zorder>
+   <zorder>label_resize_gao_2</zorder>
+   <zorder>lE_resize_kuan</zorder>
+   <zorder>lE_resize_gao</zorder>
+   <zorder>cB_resize_type</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

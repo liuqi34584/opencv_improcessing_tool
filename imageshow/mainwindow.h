@@ -39,6 +39,7 @@ public:
     //mode[0] : 0为加载单张，1为加载目录,2为转换
     //mode[1] : 0不使用二值处理，1为使用二值处理
     //mode[2] : 0不使用灰度处理，1为使用灰度处理
+    //mode[3] : 0不resize大小，1为resize大小
 
 private slots:
     void on_pB_load_one_clicked();
@@ -47,6 +48,8 @@ private slots:
     void on_pushButton_imtwovalue_clicked();
     void on_pushButton_gray_value_clicked();
     void on_pB_turn_image_clicked();
+
+    void on_pb_resize_clicked();
 
 private:
     Ui::MainWindow *ui;
