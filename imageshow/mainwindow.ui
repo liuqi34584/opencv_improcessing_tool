@@ -6,23 +6,35 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>854</width>
-    <height>733</height>
+    <width>860</width>
+    <height>800</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>860</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>860</width>
+    <height>800</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>图片处理器</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>images/icon.png</normaloff>images/icon.png</iconset>
+   <iconset resource="images.qrc">
+    <normaloff>:/icons/icon.png</normaloff>:/icons/icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pB_load_one">
+   <widget class="QPushButton" name="pB_dir_load">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>450</y>
+      <x>20</x>
+      <y>510</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -38,10 +50,10 @@ border:3px solid black;</string>
    <widget class="QLabel" name="newimage">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>10</y>
-      <width>370</width>
-      <height>370</height>
+      <x>440</x>
+      <y>40</y>
+      <width>411</width>
+      <height>411</height>
      </rect>
     </property>
     <property name="font">
@@ -51,7 +63,8 @@ border:3px solid black;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">border-radius: 6px;
+border:0px solid black;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -69,56 +82,11 @@ border:3px solid black;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="imagearea">
+   <widget class="QPushButton" name="pushButton_twovalue">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>420</y>
-      <width>771</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius: 32px;
-border:5px solid black;</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="lineWidth">
-     <number>5</number>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_titile">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>390</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>黑体</family>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
-    </property>
-    <property name="text">
-     <string>控制面板</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_imtwovalue">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>550</y>
+      <x>460</x>
+      <y>720</y>
       <width>91</width>
       <height>41</height>
      </rect>
@@ -134,14 +102,15 @@ border:3px solid black;</string>
    <widget class="QLabel" name="image">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>10</y>
-      <width>370</width>
-      <height>370</height>
+      <x>10</x>
+      <y>40</y>
+      <width>411</width>
+      <height>411</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">border-radius: 6px;
+border:0px solid black;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -156,11 +125,11 @@ border:3px solid black;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="twovalue_box">
+   <widget class="QLabel" name="twovalue">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>440</y>
+      <x>450</x>
+      <y>610</y>
       <width>221</width>
       <height>161</height>
      </rect>
@@ -182,11 +151,11 @@ border:3px solid black;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QComboBox" name="twovalue_cB_value">
+   <widget class="QComboBox" name="cBox_twovalue_threshold_value">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>450</y>
+      <x>460</x>
+      <y>620</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -1475,11 +1444,11 @@ border:3px solid black;</string>
      </property>
     </item>
    </widget>
-   <widget class="QLabel" name="label_resize">
+   <widget class="QLabel" name="resize">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>443</y>
+      <x>20</x>
+      <y>693</y>
       <width>388</width>
       <height>71</height>
      </rect>
@@ -1492,11 +1461,11 @@ border:3px solid black;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QComboBox" name="twovalue_cB_Max">
+   <widget class="QComboBox" name="cBox_twovalue_threshold_max">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>480</y>
+      <x>460</x>
+      <y>650</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -2785,11 +2754,11 @@ border:3px solid black;</string>
      </property>
     </item>
    </widget>
-   <widget class="QComboBox" name="twovalue_cB_type">
+   <widget class="QComboBox" name="cBox_twovalue_threshold_mode">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>510</y>
+      <x>460</x>
+      <y>680</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -2820,12 +2789,12 @@ border:3px solid black;</string>
      </property>
     </item>
    </widget>
-   <widget class="QLabel" name="labeltext">
+   <widget class="QLabel" name="label_image_text">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>390</y>
-      <width>621</width>
+      <x>10</x>
+      <y>460</y>
+      <width>411</width>
       <height>21</height>
      </rect>
     </property>
@@ -2840,13 +2809,13 @@ border:1px solid black;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pB_load_dir">
+   <widget class="QPushButton" name="pB_dirs_load">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>490</y>
-      <width>101</width>
-      <height>31</height>
+      <x>260</x>
+      <y>510</y>
+      <width>91</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -2857,12 +2826,12 @@ border:3px solid black;</string>
      <string>载入文件夹</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pB_save_dir">
+   <widget class="QPushButton" name="pB_dir_save">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>530</y>
-      <width>101</width>
+      <x>130</x>
+      <y>510</y>
+      <width>81</width>
       <height>31</height>
      </rect>
     </property>
@@ -2874,11 +2843,11 @@ border:3px solid black;</string>
      <string>保存图片</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_gray_value">
+   <widget class="QPushButton" name="pushButton_twovalue_gray">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>550</y>
+      <x>570</x>
+      <y>720</y>
       <width>91</width>
       <height>41</height>
      </rect>
@@ -2894,9 +2863,9 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_turn_image">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>570</y>
-      <width>101</width>
+      <x>700</x>
+      <y>550</y>
+      <width>131</width>
       <height>31</height>
      </rect>
     </property>
@@ -2908,11 +2877,11 @@ border:3px solid black;</string>
      <string>右图置为原图</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pb_resize">
+   <widget class="QPushButton" name="pB_resize">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>450</y>
+      <x>330</x>
+      <y>700</y>
       <width>71</width>
       <height>56</height>
      </rect>
@@ -2925,11 +2894,11 @@ border:3px solid black;</string>
      <string>重设大小</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lE_resize_gao">
+   <widget class="QLineEdit" name="lineEdit_resize_hight">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>450</y>
+      <x>60</x>
+      <y>700</y>
       <width>100</width>
       <height>25</height>
      </rect>
@@ -2945,11 +2914,11 @@ border:1px solid black;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lE_resize_kuan">
+   <widget class="QLineEdit" name="lineEdit_resize_width">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>450</y>
+      <x>220</x>
+      <y>700</y>
       <width>100</width>
       <height>25</height>
      </rect>
@@ -2968,8 +2937,8 @@ border:1px solid black;</string>
    <widget class="QLabel" name="label_resize_gao">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>450</y>
+      <x>30</x>
+      <y>700</y>
       <width>25</width>
       <height>25</height>
      </rect>
@@ -2986,11 +2955,11 @@ border:1px solid black;</string>
      <string>高:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_resize_gao_2">
+   <widget class="QLabel" name="label_resize_kuan">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>450</y>
+      <x>190</x>
+      <y>700</y>
       <width>25</width>
       <height>25</height>
      </rect>
@@ -3007,11 +2976,11 @@ border:1px solid black;</string>
      <string>宽:</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="cB_resize_type">
+   <widget class="QComboBox" name="cBox_resize_mode">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>480</y>
+      <x>30</x>
+      <y>730</y>
       <width>291</width>
       <height>27</height>
      </rect>
@@ -3049,31 +3018,259 @@ border:1px solid black;</string>
      </property>
     </item>
    </widget>
-   <zorder>label_resize</zorder>
-   <zorder>imagearea</zorder>
-   <zorder>twovalue_box</zorder>
+   <widget class="QPushButton" name="pB_opencv_show">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>510</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>opencv展示图片</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dir">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>500</y>
+      <width>211</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="lineWidth">
+     <number>2</number>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dirs">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>500</y>
+      <width>421</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="lineWidth">
+     <number>2</number>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_dirs_next">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>550</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>下一张</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_dirs_pre">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>510</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>上一张</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_dirs_save_all">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>510</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>保存所有图片</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_dirs_stop">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>510</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>停止处理</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_dir_filename">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>550</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>test.jpg</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_dirs_filename">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>550</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>test00002.jpg</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_newimage_text">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>460</y>
+      <width>401</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 6px;
+border:1px solid black;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_print_text">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>831</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 6px;
+border:0px solid black;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>dir</zorder>
+   <zorder>dirs</zorder>
+   <zorder>resize</zorder>
+   <zorder>twovalue</zorder>
    <zorder>image</zorder>
-   <zorder>label_titile</zorder>
-   <zorder>pB_load_one</zorder>
+   <zorder>pB_dir_load</zorder>
    <zorder>newimage</zorder>
-   <zorder>pushButton_imtwovalue</zorder>
-   <zorder>twovalue_cB_value</zorder>
-   <zorder>twovalue_cB_Max</zorder>
-   <zorder>twovalue_cB_type</zorder>
-   <zorder>labeltext</zorder>
-   <zorder>pB_load_dir</zorder>
-   <zorder>pB_save_dir</zorder>
-   <zorder>pushButton_gray_value</zorder>
+   <zorder>pushButton_twovalue</zorder>
+   <zorder>cBox_twovalue_threshold_value</zorder>
+   <zorder>cBox_twovalue_threshold_max</zorder>
+   <zorder>cBox_twovalue_threshold_mode</zorder>
+   <zorder>label_image_text</zorder>
+   <zorder>pB_dirs_load</zorder>
+   <zorder>pB_dir_save</zorder>
+   <zorder>pushButton_twovalue_gray</zorder>
    <zorder>pB_turn_image</zorder>
-   <zorder>pb_resize</zorder>
+   <zorder>pB_resize</zorder>
    <zorder>label_resize_gao</zorder>
-   <zorder>label_resize_gao_2</zorder>
-   <zorder>lE_resize_kuan</zorder>
-   <zorder>lE_resize_gao</zorder>
-   <zorder>cB_resize_type</zorder>
+   <zorder>label_resize_kuan</zorder>
+   <zorder>lineEdit_resize_width</zorder>
+   <zorder>lineEdit_resize_hight</zorder>
+   <zorder>cBox_resize_mode</zorder>
+   <zorder>pB_opencv_show</zorder>
+   <zorder>pB_dirs_next</zorder>
+   <zorder>pB_dirs_pre</zorder>
+   <zorder>pB_dirs_save_all</zorder>
+   <zorder>pB_dirs_stop</zorder>
+   <zorder>lineEdit_dir_filename</zorder>
+   <zorder>lineEdit_dirs_filename</zorder>
+   <zorder>label_newimage_text</zorder>
+   <zorder>label_print_text</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

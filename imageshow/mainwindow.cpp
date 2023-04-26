@@ -14,6 +14,8 @@
 #include <QString>
 
 #include <iostream>
+#include <QDebug>
+#include <others.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -27,333 +29,328 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-/*添加功能步骤：
- * 1.在mainwindows中布局
- * 2.为布局中的按钮添加槽函数
- * 3.在mainwindows.h文件中为mode[10]添加描述
- * 4.为对应的按钮功能函数添加功能代码,批量模式同步添加功能
- * */
+im_state image_state; //定义全局状态结构体
 
-
-// 功能函数:参数1-显示图像的Label，参数2-要显示的Mat
-void MainWindow::matToQimageLabelShow(QLabel *label, cv::Mat mat)
+// 刷新软件全局的值
+void MainWindow::get_global_state()
 {
-    cv::Mat Rgb;
-    QImage Img;
-    if (mat.channels() == 3) {  // RGB Img
-        cv::cvtColor(mat, Rgb, cv::COLOR_BGR2RGB);  //颜色空间转换
-        Img = QImage((const uchar*)(Rgb.data), Rgb.cols, Rgb.rows, Rgb.cols * Rgb.channels(), QImage::Format_RGB888);
+//    Qimclear(ui->image);
+//    Qimclear(ui->newimage);
+    // 清空字符打印窗体
+    ui->label_print_text->setText(" ");
+
+    // 刷新阈值相关的值
+    image_state.threshold.value = ui->cBox_twovalue_threshold_value->currentText().mid(3).toInt();
+    image_state.threshold.max = ui->cBox_twovalue_threshold_max->currentText().mid(4).toInt();
+    image_state.threshold.mode = ui->cBox_twovalue_threshold_mode->currentIndex();
+
+    // 刷新文件保存相关的值
+    image_state.save_dir_name = ui->lineEdit_dir_filename->text().toStdString();
+    image_state.save_dirs_name = ui->lineEdit_dirs_filename->text().toStdString();
+
+    // 刷新 resize 相关的值
+    image_state.resize.hight = std::stoi(ui->lineEdit_resize_hight->text().toStdString());
+    image_state.resize.width = std::stoi(ui->lineEdit_resize_width->text().toStdString());
+    image_state.resize.mode = ui->cBox_resize_mode->currentIndex();
+}
+
+
+void MainWindow::setprint(QString str)
+{
+    ui->label_print_text->setText(str);
+}
+
+
+void MainWindow::Image_info_show() // 显示图片信息
+{
+    QString text_str;
+    if(!image_state.img.empty()){
+        text_str.sprintf("高：%d  宽：%d  %d通道", \
+                              image_state.img.rows,image_state.img.cols,image_state.img.channels());
+        ui->label_image_text->setText(text_str);
     }
-    else {  //Gray Img
-        Img = QImage((const uchar*)(mat.data), mat.cols, mat.rows, mat.cols*mat.channels(), QImage::Format_Grayscale8);
+    else{
+        text_str.sprintf("当前数据为空");
+        ui->label_image_text->setText(text_str);
     }
-    Img = Img.scaled(label->size(),Qt::KeepAspectRatio);
-    label->setPixmap(QPixmap::fromImage(Img));
-}
 
-// 功能函数:对应二值处理功能
-cv::Mat MainWindow::gray_value(cv::Mat mat)
-{
-    cv::Mat gray_new_img;
-    uint8_t gray_value = ui->twovalue_cB_value->currentText().mid(3).toInt();
-    uint8_t gray_max_value = ui->twovalue_cB_Max->currentText().mid(4).toInt();
-    uint8_t gray_type = ui->twovalue_cB_type->currentIndex();
-    cv::threshold(mat, gray_new_img, gray_value, gray_max_value,gray_type);
-
-    return gray_new_img;
-}
-
-// 功能函数:获取文件夹中的文件列表
-int getImagePathList(cv::String folder, std::vector<cv::String> &imagePathList)
-{
-    //search all the image in a folder
-    cv::glob(folder,imagePathList);
-    return 0;
-}
-
-// 功能函数:保存图片信息到文件中
-void MainWindow::save_image()
-{
-    cv::String str;
-
-    if(mode[0]==0 || mode[0]== 2) { // 保存单张图片
-        if (!new_img.data) { // Mat数据为空
-            ui->newimage->setText("没有新的数据处理\n保存无效！！！");
-        }
-        else { // 单张图片直接保存new_img中的数据，不用关心处于何种模式
-            str = save_dirname.toStdString();
-            str = str + "/" + "newimg.png"; // 新文件的名字
-            cv::imwrite(str,new_img);
-        }
-     }
-    if(mode[0]==1) { // 批量图片要关心处理模式
-        QString str_fillenum;
-        std::vector<cv::String> imagePathList;
-        getImagePathList(dirname.toStdString() + "//",imagePathList);
-
-        for (uint i = 0; i < imagePathList.size(); i++) //找到文件数量，遍历处理
-        {
-
-            if(mode[1]==1){
-                // 显示原图片
-                MainWindow::img = cv::imread(imagePathList[i],-1);
-                matToQimageLabelShow(ui->image, img);
-
-                // 显示处理结果图片
-                MainWindow::new_img = cv::imread(imagePathList[i],0);
-                new_img = gray_value(new_img);
-                matToQimageLabelShow(ui->newimage, new_img);
-            }
-            if(mode[2]==1){
-                // 显示原图片
-                MainWindow::img = cv::imread(imagePathList[i],-1);
-                matToQimageLabelShow(ui->image, img);
-
-                // 显示处理结果图片
-                MainWindow::new_img = cv::imread(imagePathList[i],0);
-                matToQimageLabelShow(ui->newimage,new_img);
-            }
-            if(mode[3]==1){
-                // 显示原图片
-                MainWindow::img = cv::imread(imagePathList[i],-1);
-                matToQimageLabelShow(ui->image, img);
-
-                // 显示处理结果图片
-                uint gao = ui->lE_resize_gao->text().toUInt();
-                uint kuan = ui->lE_resize_kuan->text().toUInt();
-                uint8_t r_type = ui->cB_resize_type->currentIndex();
-                cv::resize(img, new_img, cv::Size(gao, kuan), 0, 0, r_type);
-                matToQimageLabelShow(ui->newimage,new_img);
-            }
-//            if(mode[2]==1){
-//                 待开发模式
-//            }
-
-            //保存图片，一个循环保存一次
-            str_fillenum.sprintf("/newimg_ %05d.png",i);
-            cv::imwrite((save_dirname + str_fillenum).toStdString(),new_img);
-        }
+    if(!image_state.new_img.empty())
+    {
+        text_str.sprintf("高：%d  宽：%d  %d通道", \
+                              image_state.new_img.rows,image_state.new_img.cols,image_state.new_img.channels());
+        ui->label_newimage_text->setText(text_str);
+    }
+    else{
+        text_str.sprintf("当前数据为空");
+        ui->label_newimage_text->setText(text_str);
     }
 }
 
-// 功能函数:文件夹模式预显示图像
-void MainWindow::dir_pre_show_image()
+// 打开单个图片文件
+void MainWindow::on_pB_dir_load_clicked()
 {
-    cv::String str;
+    get_global_state();
 
-    if(mode[0]== 0 || mode[0]== 2) {
-        if (!new_img.data) { // Mat数据为空
-            ui->newimage->setText("没有新的数据处理\n保存无效！！！");
-        }
-     }
-    if(mode[0]==1) { // 批量图片要关心处理模式
-        QString str_fillenum;
-        std::vector<cv::String> imagePathList;
-        getImagePathList(dirname.toStdString() + "//",imagePathList);
+    MainWindow::filename = QFileDialog::getOpenFileName(this, QStringLiteral("选择图片文件"), "D:",\
+                                            QStringLiteral("类型(*png *jpg *tif *gif)"));
 
-        if(mode[1]==1){
-            MainWindow::new_img = cv::imread(imagePathList[0], 0);
-            new_img = gray_value(new_img);
+    if (!filename.isEmpty()) {
+        if(isReasonablefile(filename.toStdString()) == true){
+            image_state.isDirectorys = false;
+            image_state.process_mode = mode_set::show;
 
-            matToQimageLabelShow(ui->newimage, new_img); // 界面显示图片
-            QString labeltext_str;
-            labeltext_str.sprintf("高：%d  宽：%d  %d通道      高：%d  宽：%d  %d通道", \
-                                  img.rows,img.cols,img.channels(), \
-                                  new_img.rows,new_img.cols,new_img.channels());
-            ui->labeltext->setText(labeltext_str);
-        }
-        if(mode[2]==1){
-            MainWindow::new_img = cv::imread(imagePathList[0], 0);
+            image_state.img = Image_read(filename.toStdString());
+            image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
 
-            matToQimageLabelShow(ui->newimage, new_img); // 界面显示图片
-            QString labeltext_str;
-            labeltext_str.sprintf("高：%d  宽：%d  %d通道      高：%d  宽：%d  %d通道", \
-                                  img.rows,img.cols,img.channels(), \
-                                  new_img.rows,new_img.cols,new_img.channels());
-            ui->labeltext->setText(labeltext_str);
-        }
-        if(mode[3]==1){
-            MainWindow::new_img = cv::imread(imagePathList[0],-1);
+            QImage Qimg = Mat2QImage(image_state.img);
+            Qimshow(ui->image, Qimg);
 
-            uint gao = ui->lE_resize_gao->text().toUInt();
-            uint kuan = ui->lE_resize_kuan->text().toUInt();
-            uint8_t r_type = ui->cB_resize_type->currentIndex();
+            QImage Qnewimg = Mat2QImage(image_state.new_img);
+            Qimshow(ui->newimage, Qnewimg);
 
-            cv::resize(new_img, new_img, cv::Size(gao, kuan), 0, 0, r_type);
-            matToQimageLabelShow(ui->newimage,new_img);
-
-            matToQimageLabelShow(ui->newimage, new_img); // 界面显示图片
-            QString labeltext_str;
-            labeltext_str.sprintf("高：%d  宽：%d  %d通道      高：%d  宽：%d  %d通道", \
-                                  img.rows,img.cols,img.channels(), \
-                                  new_img.rows,new_img.cols,new_img.channels());
-            ui->labeltext->setText(labeltext_str);
-        }
-//        if(mode[2]==1){
-//             待开发模式
-//        }
-
-    }
+            Image_info_show();  // 显示图片尺寸，通道信息
+        } else setprint("不能识别该路径或文件格式  " + filename);
+    } else setprint("未选择图片文件");
 }
 
-//  按钮函数:加载单张图片，并且显示图片
-void MainWindow::on_pB_load_one_clicked()
+// 打开文件夹
+void MainWindow::on_pB_dirs_load_clicked()
 {
-    QFile file;
+    get_global_state();
 
-    if(mode[0] == 2){
-        file.setFileName(filename);
-        file.remove();
-    }
+    QString directory = QFileDialog::getExistingDirectory(this, tr("选择文件夹"));
 
-    filename = QFileDialog::getOpenFileName(this,\
-                                            QStringLiteral("请选择图片文件"),\
-                                            "D:",\
-                                           QStringLiteral("图片文件(*png *jpg *tif *gif)"));
+    if (!directory.isEmpty()) {
+        MainWindow::image_list = get_directory_list(directory);
+        if(!image_list.isEmpty()) {
+            MainWindow::filename = image_list[0];
+            if(isReasonablefile(filename.toStdString()) == true) {
+                image_state.isDirectorys = true;
+                image_state.process_mode = mode_set::show;
 
-    img = cv::imread(filename.toStdString(),-1);
-    QString labeltext_str;
-    labeltext_str.sprintf("高：%d  宽：%d  %d通道",img.rows,img.cols,img.channels());
-    ui->labeltext->setText(labeltext_str);
-    matToQimageLabelShow(ui->image,img);
-    mode[0]= 0;mode[1]= 0;mode[2]= 0;mode[3]= 0;mode[4]= 0;
-    mode[5]= 0;mode[6]= 0;mode[7]= 0;mode[8]= 0;mode[9]= 0;
+                image_state.img = Image_read(filename.toStdString());
+                image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+                QImage Qimg = Mat2QImage(image_state.img);
+                Qimshow(ui->image, Qimg);
+
+                QImage Qnewimg = Mat2QImage(image_state.new_img);
+                Qimshow(ui->newimage, Qnewimg);
+
+                Image_info_show();  // 显示图片尺寸，通道信息
+            } else setprint("不能识别该路径或文件格式  " + filename);
+        } else setprint("未找到图片");
+    } else setprint("未选择文件夹");
 }
 
-// 按钮函数:加载批量图片的文件夹
-void MainWindow::on_pB_load_dir_clicked()
+// 文件夹的下一张
+void MainWindow::on_pB_dirs_next_clicked()
 {
-    QFile file;
+    get_global_state();
+    if(!image_list.isEmpty()) {
+        int index = image_list.indexOf(filename);
+        if ( 0 <= index && index < image_list.size()-1) index++;
+        filename = image_list[index];
 
-    if(mode[0] == 2){
-        file.setFileName(filename);
-        file.remove();
-    }
+        if(isReasonablefile(filename.toStdString()) == true) {
 
-    dirname = QFileDialog::getExistingDirectory(); // 弹出选择文件夹选项
+            image_state.img = Image_read(filename.toStdString());
+            image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
 
-    std::vector<cv::String> imagePathList;
-    getImagePathList(dirname.toStdString() + "/",imagePathList); // 得到文件夹下的文件列表
-    matToQimageLabelShow(ui->image,cv::imread(imagePathList[0], -1)); // 显示文件夹的第一张图片
+            QImage Qimg = Mat2QImage(image_state.img);
+            Qimshow(ui->image, Qimg);
 
-    mode[0]= 1;mode[1]= 0;mode[2]= 0;mode[3]= 0;mode[4]= 0;
-    mode[5]= 0;mode[6]= 0;mode[7]= 0;mode[8]= 0;mode[9]= 0;
+            QImage Qnewimg = Mat2QImage(image_state.new_img);
+            Qimshow(ui->newimage, Qnewimg);
+
+            Image_info_show();  // 显示图片尺寸，通道信息
+
+        } else setprint("不能识别该路径或文件格式  " + filename);
+    } else setprint("文件夹列表为空");
 }
 
-// 按钮函数：加载图的保存路径
-void MainWindow::on_pB_save_dir_clicked()
+// 文件夹上一张
+void MainWindow::on_pB_dirs_pre_clicked()
 {
-    save_dirname = QFileDialog::getExistingDirectory();
-    save_image();
+    get_global_state();
+    if(!image_list.isEmpty()) {
+        int index = image_list.indexOf(filename);
+        if ( 0 < index && index < image_list.size()) index--;
+        filename = image_list[index];
+
+        if(isReasonablefile(filename.toStdString()) == true) {
+
+            image_state.img = Image_read(filename.toStdString());
+            image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+            QImage Qimg = Mat2QImage(image_state.img);
+            Qimshow(ui->image, Qimg);
+
+            QImage Qnewimg = Mat2QImage(image_state.new_img);
+            Qimshow(ui->newimage, Qnewimg);
+
+            Image_info_show();  // 显示图片尺寸，通道信息
+
+        } else setprint("不能识别该路径或文件格式  " + filename);
+    } else setprint("文件夹列表为空");
 }
 
-// 按钮函数:处理二值图像并且展示
-void MainWindow::on_pushButton_imtwovalue_clicked()
+void MainWindow::on_pB_dir_save_clicked()
 {
-    if(mode[0]==0 || mode[0]== 2) { // 模式0 2表示：不必批量处理,处理生成单个new_img
-        MainWindow::new_img = cv::imread(filename.toStdString(),0);
-        new_img = gray_value(new_img);
-        matToQimageLabelShow(ui->newimage,new_img);
+    get_global_state();  // 获取全局设置状态
 
-        QString labeltext_str;
-        labeltext_str.sprintf("高：%d  宽：%d  %d通道      高：%d  宽：%d  %d通道", \
-                              img.rows,img.cols,img.channels(), \
-                              new_img.rows,new_img.cols,new_img.channels());
-        ui->labeltext->setText(labeltext_str);
-        }
-    if(mode[0]==1) { // 模式1 表示批量处理，生成多个new_img
-        mode[1]=1;
-        dir_pre_show_image();
-    }
+    if(!image_state.new_img.empty())  // 不能保存空MAT
+    {
+        QString directory = QFileDialog::getExistingDirectory(this, tr("选择文件夹"));
+        if (!directory.isEmpty()) {  // 判断保存路径
+            cv::String save_path = directory.toStdString() + "/" + image_state.save_dir_name;
+
+            if(isReasonablefile(image_state.save_dir_name) == true) {
+                imwrite(save_path, image_state.new_img);
+            } else setprint("不支持该路径或者文件格式的保存" + QString::fromStdString(save_path));
+        } else setprint("未选择保存路径");
+    } else setprint("不能保存空MAT");
 }
 
-// 按钮函数：处理灰度图像并且显示
-void MainWindow::on_pushButton_gray_value_clicked()
+void MainWindow::on_pB_dirs_save_all_clicked()
 {
-    if(mode[0]==0 || mode[0]== 2) { // 模式0 2表示：不必批量处理,处理生成单个new_img
-        MainWindow::new_img = cv::imread(filename.toStdString(),0);
-        matToQimageLabelShow(ui->newimage,new_img);
+    get_global_state();  // 获取全局设置状态
 
-        QString labeltext_str;
-        labeltext_str.sprintf("高：%d  宽：%d  %d通道      高：%d  宽：%d  %d通道", \
-                              img.rows,img.cols,img.channels(), \
-                              new_img.rows,new_img.cols,new_img.channels());
-        ui->labeltext->setText(labeltext_str);
-        }
-    if(mode[0]==1) { // 模式1 表示批量处理，生成多个new_img
-        mode[2]=1;
-        dir_pre_show_image();
-    }
+    cv::String head,end;  // 文件名的头部尾部
+    int number,number_width;
+    cv::String cv_filennme; //最终保存的文件名
+    // 判断设置的文件名是否合理
+    if(isReasonablefile(image_state.save_dirs_name) == true) {
+        find_num(image_state.save_dirs_name, head, number, number_width, end);
+        // 判断是否有源图片列表
+        if(!image_list.isEmpty()) {
+            QString directory = QFileDialog::getExistingDirectory(this, tr("选择保存文件夹"));
+            // 判断是否选择保存文件夹
+            if (!directory.isEmpty()) {
+                for(int i = number; i < number+image_list.length();i++){
+
+                    MainWindow::filename = image_list[i-number];
+
+                    if(isReasonablefile(filename.toStdString()) == true) {
+                        image_state.img = Image_read(filename.toStdString());
+                        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+                        QImage Qimg = Mat2QImage(image_state.img);
+                        Qimshow(ui->image, Qimg);
+
+                        QImage Qnewimg = Mat2QImage(image_state.new_img);
+                        Qimshow(ui->newimage, Qnewimg);
+
+                        Image_info_show();  // 显示图片尺寸，通道信息
+
+                        if(int(std::to_string(number).length()) != number_width) {
+                            // 需要补全 “0056” -> 56
+                            cv_filennme = directory.toStdString() + '/' + head + zfill(std::to_string(i), number_width) + end;
+                        }
+                        else cv_filennme = directory.toStdString() + '/' + std::to_string(i) + end;
+
+                        if(!image_state.new_img.empty())  {
+                            cv::imwrite(cv_filennme, image_state.new_img);
+                            setprint("图片保存成功"  + QString::fromStdString(cv_filennme));
+                        } else setprint("不能保存空MAT");
+                    } else setprint("不能识别该路径或文件格式" + directory + "/" + filename);
+                }
+            } else setprint("未选择保存文件夹");
+        } else setprint("请打开要处理的文件夹");
+    } else setprint("不支持该文件名格式的保存");
 }
 
-// 按钮函数，对图片resize大小且显示
-void MainWindow::on_pb_resize_clicked()
+
+void MainWindow::on_pushButton_twovalue_clicked()
 {
-    if(mode[0]==0 || mode[0]== 2) { // 模式0 2表示：不必批量处理,处理生成单个new_img
-        MainWindow::new_img = cv::imread(filename.toStdString(),-1);
+    get_global_state();  // 获取全局设置状态
+    if (!filename.isEmpty()) {
+        image_state.process_mode = mode_set::twovalue;
 
-        uint gao = ui->lE_resize_gao->text().toUInt();
-        uint kuan = ui->lE_resize_kuan->text().toUInt();
-        uint8_t r_type = ui->cB_resize_type->currentIndex();
-        cv::resize(new_img, new_img, cv::Size(gao, kuan), 0, 0, r_type);
-        matToQimageLabelShow(ui->newimage,new_img);
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
 
-        QString labeltext_str;
-        labeltext_str.sprintf("高：%d  宽：%d  %d通道      高：%d  宽：%d  %d通道", \
-                              img.rows,img.cols,img.channels(), \
-                              new_img.rows,new_img.cols,new_img.channels());
-        ui->labeltext->setText(labeltext_str);
-        }
-    if(mode[0] == 1) { // 模式1 表示批量处理，生成多个new_img
-        mode[3] = 1; //模式三的批量处理开关
-        dir_pre_show_image();
-    }
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
 }
 
+void MainWindow::on_pushButton_twovalue_gray_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+    if (!filename.isEmpty()) {
 
-// 按钮函数：将右图变换到左边
+        image_state.process_mode = mode_set::gray;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+void MainWindow::on_pB_resize_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::resize;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
 void MainWindow::on_pB_turn_image_clicked()
 {
-    cv::String str;
-    if(mode[0] == 1) {
-        ui->newimage->setText("批量处理时，不可执行本操作！");
-    }
-    else {
-        if (!new_img.data) { // Mat数据为空
-            ui->newimage->setText("请先选择模式，再转换！！！");
-        }
-        else {
-            // 先把右图作为文件保存
-            str = filename.toStdString();
-            cv::String::size_type iPos = str.find_last_of('/') + 1;
-            str = str.substr(0, iPos) + "prosess.png";
-            cv::imwrite(str,new_img);
-            filename = QString::fromStdString(str);
+    get_global_state();  // 获取全局设置状态
 
-            // 再把右图Mat数据转换到左图,并且显示
-            img = cv::imread(str, -1);
-            matToQimageLabelShow(ui->image,img);
+    if(!image_state.new_img.empty())
+    {
+        image_state.img = image_state.new_img;
 
-            QString labeltext_str;
-            labeltext_str.sprintf("高：%d  宽：%d  %d通道",img.rows,img.cols,img.channels());
-            ui->labeltext->setText(labeltext_str);
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
 
-            ui->newimage->setText("转换完成！！！");
-            mode[0] = 2;
-        }
-    }
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+    } else setprint("未选择处理模式");
 }
 
-void MainWindow::closeEvent(QCloseEvent *event)
+// opencv单独弹窗显示，方便查看像素点
+void MainWindow::on_pB_opencv_show_clicked()
 {
-    QFile file;
-    if(mode[0] == 2){
-        file.setFileName(filename);
-        file.remove();
-    }
-    event->accept();
+    QString filename = QFileDialog::getOpenFileName(this,\
+                                            QStringLiteral("请选择图片文件"), "D:",\
+                                            QStringLiteral("图片文件(*png *jpg *tif *bmp *tiff)"));
+
+    // 表示当选择的文件夹路径不为空时，执行 if 语句块中的代码
+    if (!filename.isEmpty()) {
+
+        cv::Mat img = cv::imread(filename.toStdString(), -1);
+        if(img.channels() == 4)  img = cv::imread(filename.toStdString(), 1);
+
+        cv::imshow(filename.toStdString(),img);
+        cv::waitKey(0);
+    } else setprint("未选择图片文件");
 }
-
-
 
 

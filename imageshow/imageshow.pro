@@ -17,10 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    others.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    others.h
 
 FORMS += \
     mainwindow.ui
@@ -30,6 +32,9 @@ INCLUDEPATH += D:\appdata\opencv\rebuild_for_qt\install\include \
                D:\appdata\opencv\rebuild_for_qt\include\opencv2
 
 LIBS  +=-L D:\appdata\opencv\rebuild_for_qt\install\x64\mingw\lib\libopencv_*.dll.a
+
+RESOURCES += \
+    images.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
