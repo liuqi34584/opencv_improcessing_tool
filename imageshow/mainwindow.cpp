@@ -207,6 +207,7 @@ void MainWindow::on_pB_dir_save_clicked()
 
             if(isReasonablefile(image_state.save_dir_name) == true) {
                 imwrite(save_path, image_state.new_img);
+                setprint("图片保存成功  "  + QString::fromStdString(save_path));
             } else setprint("不支持该路径或者文件格式的保存" + QString::fromStdString(save_path));
         } else setprint("未选择保存路径");
     } else setprint("不能保存空MAT");
@@ -247,17 +248,17 @@ void MainWindow::on_pB_dirs_save_all_clicked()
                             // 需要补全 “0056” -> 56
                             cv_filennme = directory.toStdString() + '/' + head + zfill(std::to_string(i), number_width) + end;
                         }
-                        else cv_filennme = directory.toStdString() + '/' + std::to_string(i) + end;
+                        else cv_filennme = directory.toStdString() + '/' + head + std::to_string(i) + end;
 
                         if(!image_state.new_img.empty())  {
                             cv::imwrite(cv_filennme, image_state.new_img);
-                            setprint("图片保存成功"  + QString::fromStdString(cv_filennme));
+                            setprint("图片保存成功  "  + QString::fromStdString(cv_filennme));
                         } else setprint("不能保存空MAT");
                     } else setprint("不能识别该路径或文件格式" + directory + "/" + filename);
                 }
             } else setprint("未选择保存文件夹");
         } else setprint("请打开要处理的文件夹");
-    } else setprint("不支持该文件名格式的保存");
+    } else setprint("不支持该路径或者文件格式的保存");
 }
 
 
