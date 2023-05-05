@@ -52,7 +52,21 @@ private slots:
 
     void on_pB_resize_clicked();
 
+    void on_pB_turn_channels_there_clicked();
+
+    void on_pB_erode_clicked();
+
     void on_pB_turn_image_clicked();
+
+    void on_pB_dilate_clicked();
+
+    void on_pB_turn_channels_b_clicked();
+
+    void on_pB_turn_channels_g_clicked();
+
+    void on_pB_turn_channels_r_clicked();
+
+    void on_pB_equalizehist_clicked();
 
 private:
     Ui::MainWindow *ui;

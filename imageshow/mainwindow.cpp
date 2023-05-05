@@ -52,20 +52,30 @@ void MainWindow::get_global_state()
     image_state.resize.hight = std::stoi(ui->lineEdit_resize_hight->text().toStdString());
     image_state.resize.width = std::stoi(ui->lineEdit_resize_width->text().toStdString());
     image_state.resize.mode = ui->cBox_resize_mode->currentIndex();
+
+    // 刷新 erode 相关的值
+    image_state.erode.kernel_hight = std::stoi(ui->lineEdit_erode_kernel_hight->text().toStdString());
+    image_state.erode.kernel_width = std::stoi(ui->lineEdit_erode_kernel_width->text().toStdString());
+    image_state.erode.StructuringElement = ui->cBox_erode_Structuring->currentIndex();
+
+    // 刷新 dilate 相关的值
+    image_state.dilate.kernel_hight = std::stoi(ui->lineEdit_dilate_kernel_hight->text().toStdString());
+    image_state.dilate.kernel_width = std::stoi(ui->lineEdit_dilate_kernel_width->text().toStdString());
+    image_state.dilate.StructuringElement = ui->cBox_dilate_Structuring->currentIndex();
 }
 
-
+// 利用界面 label 显示打印信息
 void MainWindow::setprint(QString str)
 {
     ui->label_print_text->setText(str);
 }
 
-
-void MainWindow::Image_info_show() // 显示图片信息
+// 显示图片信息
+void MainWindow::Image_info_show()
 {
     QString text_str;
     if(!image_state.img.empty()){
-        text_str.sprintf("高：%d  宽：%d  %d通道", \
+        text_str.sprintf("原图：  高：%d  宽：%d  %d通道", \
                               image_state.img.rows,image_state.img.cols,image_state.img.channels());
         ui->label_image_text->setText(text_str);
     }
@@ -76,7 +86,7 @@ void MainWindow::Image_info_show() // 显示图片信息
 
     if(!image_state.new_img.empty())
     {
-        text_str.sprintf("高：%d  宽：%d  %d通道", \
+        text_str.sprintf("处理后图：  高：%d  宽：%d  %d通道", \
                               image_state.new_img.rows,image_state.new_img.cols,image_state.new_img.channels());
         ui->label_newimage_text->setText(text_str);
     }
@@ -195,6 +205,7 @@ void MainWindow::on_pB_dirs_pre_clicked()
     } else setprint("文件夹列表为空");
 }
 
+// 保存单张图片
 void MainWindow::on_pB_dir_save_clicked()
 {
     get_global_state();  // 获取全局设置状态
@@ -213,6 +224,7 @@ void MainWindow::on_pB_dir_save_clicked()
     } else setprint("不能保存空MAT");
 }
 
+// 保存整个文件夹的图片
 void MainWindow::on_pB_dirs_save_all_clicked()
 {
     get_global_state();  // 获取全局设置状态
@@ -261,7 +273,7 @@ void MainWindow::on_pB_dirs_save_all_clicked()
     } else setprint("不支持该路径或者文件格式的保存");
 }
 
-
+// 对图片进行二值处理
 void MainWindow::on_pushButton_twovalue_clicked()
 {
     get_global_state();  // 获取全局设置状态
@@ -280,6 +292,7 @@ void MainWindow::on_pushButton_twovalue_clicked()
     } else setprint("未读取到图片文件");
 }
 
+// 对图片进行灰度处理
 void MainWindow::on_pushButton_twovalue_gray_clicked()
 {
     get_global_state();  // 获取全局设置状态
@@ -299,6 +312,7 @@ void MainWindow::on_pushButton_twovalue_gray_clicked()
     } else setprint("未读取到图片文件");
 }
 
+// 对图片进行重设大小处理
 void MainWindow::on_pB_resize_clicked()
 {
     get_global_state();  // 获取全局设置状态
@@ -319,6 +333,152 @@ void MainWindow::on_pB_resize_clicked()
     } else setprint("未读取到图片文件");
 }
 
+// 将图片转化为三通道图片
+void MainWindow::on_pB_turn_channels_there_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::turn_channels_there;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+// 对图片进行腐蚀处理
+void MainWindow::on_pB_erode_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::erode;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+// 对图片进行膨胀处理
+void MainWindow::on_pB_dilate_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::dilate;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+// 提取出图片的单个 B 通道
+void MainWindow::on_pB_turn_channels_b_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::one_channel_b;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+void MainWindow::on_pB_turn_channels_g_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::one_channel_g;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+void MainWindow::on_pB_turn_channels_r_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::one_channel_r;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+void MainWindow::on_pB_equalizehist_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::equalizehist;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+
+// 将 newimage 转化为 image
 void MainWindow::on_pB_turn_image_clicked()
 {
     get_global_state();  // 获取全局设置状态

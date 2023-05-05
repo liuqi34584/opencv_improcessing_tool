@@ -24,7 +24,14 @@ enum mode_set {
     show =0,
     twovalue,
     gray,
-    resize
+    resize,
+    turn_channels_there,
+    erode,
+    dilate,
+    one_channel_b,
+    one_channel_g,
+    one_channel_r,
+    equalizehist
 };
 
 // 定义阈值相关参数结构体
@@ -41,6 +48,20 @@ struct Resize {
     uint8_t mode;
 };
 
+// 定义erode相关参数结构体
+struct Erode {
+    int kernel_hight = 3;
+    int kernel_width = 3;
+    uint8_t StructuringElement;
+};
+
+// 定义dilate相关参数结构体
+struct Dilate {
+    int kernel_hight = 3;
+    int kernel_width = 3;
+    int StructuringElement;
+};
+
 
 struct im_state {
     cv::Mat img;
@@ -54,6 +75,8 @@ struct im_state {
 
     ThreShold threshold;
     Resize resize;
+    Erode erode;
+    Dilate dilate;
 };
 extern im_state image_state;
 

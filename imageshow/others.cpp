@@ -4,7 +4,7 @@
 cv::Mat Image_read(cv::String file_path)
 {
     cv::Mat img = cv::imread(file_path, -1);
-    if(img.channels() == 4) img = cv::imread(file_path, 1); //四通道图片转为三通道
+//    if(img.channels() == 4) img = cv::imread(file_path, 1); //四通道图片转为三通道
 
     return img;
 }
@@ -94,41 +94,51 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
     }
     if(mode == mode_set::twovalue)  // 对图片进行二值处理
     {
-
         // 若不为单通道，则先强制转化为单通道，再阈值处理
-        if(mat.channels()!=1){
+        if(mat.channels()==4){
             cv::Mat gray_mat;
             cv::Mat threshold_mat;
-            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
-            // 若为单通道，直接阈值处理
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
             cv::threshold(gray_mat, threshold_mat, image_state.threshold.value, image_state.threshold.max, image_state.threshold.mode);
 
             return threshold_mat;
-        } else {
+        }
+        else if(mat.channels()==3){
+            cv::Mat gray_mat;
             cv::Mat threshold_mat;
-            // 若为单通道，直接阈值处理
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::threshold(gray_mat, threshold_mat, image_state.threshold.value, image_state.threshold.max, image_state.threshold.mode);
+
+            return threshold_mat;
+        }
+        else{ // 若为单通道，直接阈值处理
+            cv::Mat threshold_mat;
             cv::threshold(mat, threshold_mat, image_state.threshold.value, image_state.threshold.max, image_state.threshold.mode);
 
             return threshold_mat;
         }
-
     }
     if(mode == mode_set::gray)  // 对图片进行灰度处理
     {
-        // 不为单通道，才有转灰度的概念
-        if(mat.channels() != 1) {
-            cv::Mat gray_mat;
-            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+        cv::Mat bgr_mat;
+        cv::Mat gray_mat;
 
-            return gray_mat;
-        } else {
-            cv::Mat bgr_mat;
-            cv::Mat gray_mat;
+        switch(mat.channels()){
+            case 1:
             cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
             cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+            break;
 
-            return gray_mat;
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+            break;
         }
+
+        return gray_mat;
     }
     if(mode == mode_set::resize)  // 对图片进行resize
     {
@@ -140,6 +150,211 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
         cv::resize(mat, resize_mat, outputSize, 0, 0, image_state.resize.mode);
 
         return resize_mat;
+    }
+    if(mode == mode_set::turn_channels_there)  // 对图片进行三通道转换
+    {
+        // 若不为单通道，则先强制转化为单通道，再阈值处理
+        if(mat.channels()==4){
+            cv::Mat bgr_mat;
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_BGRA2BGR);
+            return bgr_mat;
+        }
+        else if(mat.channels()==1){
+            cv::Mat bgr_mat;
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+
+            return bgr_mat;
+        }
+        else return mat;
+
+    }
+    if(mode == mode_set::erode)  // 对图片进行腐蚀
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat kernel,erode_mat;
+
+        // 创建一个充满零的单通道图像，其大小与输入图像相同
+
+        kernel = getStructuringElement(image_state.erode.StructuringElement, \
+                                        cv::Size(image_state.erode.kernel_hight, \
+                                                 image_state.erode.kernel_width));
+
+        // 必须单通道才能腐蚀膨胀
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::erode(gray_mat, erode_mat, kernel);
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::erode(gray_mat, erode_mat, kernel);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+            cv::erode(gray_mat, erode_mat, kernel);
+            break;
+        }
+
+        return erode_mat;
+    }
+    if(mode == mode_set::dilate)  // 对图片进行膨胀
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat kernel,dilate_mat;
+
+        // 创建一个充满零的单通道图像，其大小与输入图像相同
+        kernel = getStructuringElement(image_state.erode.StructuringElement, \
+                                        cv::Size(image_state.erode.kernel_hight, \
+                                                 image_state.erode.kernel_width));
+
+        // 必须单通道才能腐蚀膨胀
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::dilate(gray_mat, dilate_mat, kernel);
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::dilate(gray_mat, dilate_mat, kernel);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+            cv::dilate(gray_mat, dilate_mat, kernel);
+            break;
+        }
+
+        return dilate_mat;
+    }
+    if(mode == mode_set::one_channel_b)  // 提取出图片的 B 通道
+    {
+        cv::Mat gray_mat,bgr_mat;
+        cv::Mat b_mat;
+        std::vector<cv::Mat> channel;//图像数组
+
+        switch(mat.channels()){
+            case 1:
+             // cv::extractChannel(mat, g_mat, 1);
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::split(bgr_mat, channel);
+            channel[1] = 0;
+            channel[2] = 0;
+            cv::merge(channel, b_mat);
+            break;
+
+            case 3:
+            cv::split(mat, channel);
+            channel[1] = 0;
+            channel[2] = 0;
+            cv::merge(channel, b_mat);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_BGRA2BGR);
+            cv::split(mat, channel);
+            channel[1] = 0;
+            channel[2] = 0;
+            cv::merge(channel, b_mat);
+            break;
+        }
+
+        return b_mat;
+    }
+    if(mode == mode_set::one_channel_g)  // 提取出图片的 G 通道
+    {
+        cv::Mat gray_mat,bgr_mat;
+        cv::Mat g_mat;
+        std::vector<cv::Mat> channel;//图像数组
+
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::split(bgr_mat, channel);
+            channel[0] = 0;
+            channel[2] = 0;
+            cv::merge(channel, g_mat);
+            break;
+
+            case 3:
+            cv::split(mat, channel);
+            channel[0] = 0;
+            channel[2] = 0;
+            cv::merge(channel, g_mat);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_BGRA2BGR);
+            cv::split(mat, channel);
+            channel[0] = 0;
+            channel[2] = 0;
+            cv::merge(channel, g_mat);
+            break;
+        }
+
+        return g_mat;
+    }
+    if(mode == mode_set::one_channel_r)  // 提取出图片的 G 通道
+    {
+        cv::Mat gray_mat,bgr_mat;
+        cv::Mat r_mat;
+        std::vector<cv::Mat> channel;//图像数组
+
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::split(bgr_mat, channel);
+            channel[0] = 0;
+            channel[1] = 0;
+            cv::merge(channel, r_mat);
+            break;
+
+            case 3:
+            cv::split(mat, channel);
+            channel[0] = 0;
+            channel[1] = 0;
+            cv::merge(channel, r_mat);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_BGRA2BGR);
+            cv::split(mat, channel);
+            channel[0] = 0;
+            channel[1] = 0;
+            cv::merge(channel, r_mat);
+            break;
+        }
+
+        return r_mat;
+    }
+    if(mode == mode_set::equalizehist)  // 对图片进行直方图均衡处理
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat hist_mat;
+
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::equalizeHist(gray_mat, hist_mat);
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::equalizeHist(gray_mat, hist_mat);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+            cv::equalizeHist(gray_mat, hist_mat);
+            break;
+        }
+
+        return hist_mat;
     }
 
     return mat; //默认返回值
