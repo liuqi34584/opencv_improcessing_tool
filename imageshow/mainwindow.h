@@ -66,7 +66,17 @@ private slots:
 
     void on_pB_turn_channels_r_clicked();
 
+    void on_pushButton_twovalue_otsu_clicked();
+
     void on_pB_equalizehist_clicked();
+
+    void on_pushButton_twovalue_triangle_clicked();
+
+    void on_pB_flip_horizontal_clicked();
+
+    void on_pB_flip_vertical_clicked();
+
+    void on_pB_padding_clicked();
 
 private:
     Ui::MainWindow *ui;

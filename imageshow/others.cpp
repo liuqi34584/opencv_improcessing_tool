@@ -1,14 +1,5 @@
 #include <others.h>
 
-// opencv读取函数
-cv::Mat Image_read(cv::String file_path)
-{
-    cv::Mat img = cv::imread(file_path, -1);
-//    if(img.channels() == 4) img = cv::imread(file_path, 1); //四通道图片转为三通道
-
-    return img;
-}
-
 
 QImage Mat2QImage(const cv::Mat& mat)
 {
@@ -139,6 +130,57 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
         }
 
         return gray_mat;
+    }
+    if(mode == mode_set::otsu)  // 对图片进行OTSU处理
+    {
+        cv::Mat bgr_mat;
+        cv::Mat gray_mat, otsu_mat;
+
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::threshold(gray_mat, otsu_mat, 0, 255, image_state.threshold.mode|cv::THRESH_OTSU);
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::threshold(gray_mat, otsu_mat, 0, 255, image_state.threshold.mode|cv::THRESH_OTSU);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+            cv::threshold(gray_mat, otsu_mat, 0, 255, image_state.threshold.mode|cv::THRESH_OTSU);
+            break;
+        }
+
+        return otsu_mat;
+    }
+    if(mode == mode_set::triangle)  // 对图片进行triangle处理
+    {
+        cv::Mat bgr_mat;
+        cv::Mat gray_mat, triangle_mat;
+
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::threshold(gray_mat, triangle_mat, 0, 255, image_state.threshold.mode|cv::THRESH_TRIANGLE);
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::threshold(gray_mat, triangle_mat, 0, 255, image_state.threshold.mode|cv::THRESH_TRIANGLE);
+
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+            cv::threshold(gray_mat, triangle_mat, 0, 255, image_state.threshold.mode|cv::THRESH_TRIANGLE);
+            break;
+        }
+
+        return triangle_mat;
     }
     if(mode == mode_set::resize)  // 对图片进行resize
     {
@@ -356,6 +398,44 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
 
         return hist_mat;
     }
+    if(mode == mode_set::flip_horizontal) //对图片进行左右翻转
+    {
+        cv::Mat horizontal_mat;
+        cv::flip(mat, horizontal_mat, 1);
+        return horizontal_mat;
+    }
+    if(mode == mode_set::flip_vertical) //对图片进行上下翻转
+    {
+        cv::Mat vertical_mat;
+        cv::flip(mat, vertical_mat, 0);
+        return vertical_mat;
+    }
+    if(mode == mode_set::padding) //对图片进行padding填充
+    {
+        cv::Mat bgra_mat, padding_mat;
+
+        switch (image_state.padding.bordermode) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            cv::copyMakeBorder(mat, padding_mat, \
+                               image_state.padding.top, image_state.padding.bottom, \
+                               image_state.padding.left, image_state.padding.right, \
+                               image_state.padding.bordermode);
+            break;
+            case 5:
+            cv::copyMakeBorder(mat, padding_mat, \
+                               image_state.padding.top, image_state.padding.bottom, \
+                               image_state.padding.left, image_state.padding.right, \
+                               cv::BORDER_ISOLATED);
+            break;
+        }
+
+        return padding_mat;
+    }
+
 
     return mat; //默认返回值
 }

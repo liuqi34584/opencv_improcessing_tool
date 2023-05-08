@@ -62,6 +62,13 @@ void MainWindow::get_global_state()
     image_state.dilate.kernel_hight = std::stoi(ui->lineEdit_dilate_kernel_hight->text().toStdString());
     image_state.dilate.kernel_width = std::stoi(ui->lineEdit_dilate_kernel_width->text().toStdString());
     image_state.dilate.StructuringElement = ui->cBox_dilate_Structuring->currentIndex();
+
+    // 刷新 padding 相关的值
+    image_state.padding.top = std::stoi(ui->lineEdit_padding_top->text().toStdString());
+    image_state.padding.bottom = std::stoi(ui->lineEdit_padding_bottom->text().toStdString());
+    image_state.padding.left = std::stoi(ui->lineEdit_padding_left->text().toStdString());
+    image_state.padding.right = std::stoi(ui->lineEdit_padding_right->text().toStdString());
+    image_state.padding.bordermode = ui->cBox_padding_mode->currentIndex();
 }
 
 // 利用界面 label 显示打印信息
@@ -109,7 +116,7 @@ void MainWindow::on_pB_dir_load_clicked()
             image_state.isDirectorys = false;
             image_state.process_mode = mode_set::show;
 
-            image_state.img = Image_read(filename.toStdString());
+            image_state.img = cv::imread(filename.toStdString(), cv::IMREAD_UNCHANGED);
             image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
 
             QImage Qimg = Mat2QImage(image_state.img);
@@ -138,7 +145,8 @@ void MainWindow::on_pB_dirs_load_clicked()
                 image_state.isDirectorys = true;
                 image_state.process_mode = mode_set::show;
 
-                image_state.img = Image_read(filename.toStdString());
+//                image_state.img = Image_read(filename.toStdString());
+                image_state.img = cv::imread(filename.toStdString(), cv::IMREAD_UNCHANGED);
                 image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
 
                 QImage Qimg = Mat2QImage(image_state.img);
@@ -164,7 +172,7 @@ void MainWindow::on_pB_dirs_next_clicked()
 
         if(isReasonablefile(filename.toStdString()) == true) {
 
-            image_state.img = Image_read(filename.toStdString());
+            image_state.img = cv::imread(filename.toStdString(), cv::IMREAD_UNCHANGED);
             image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
 
             QImage Qimg = Mat2QImage(image_state.img);
@@ -190,7 +198,7 @@ void MainWindow::on_pB_dirs_pre_clicked()
 
         if(isReasonablefile(filename.toStdString()) == true) {
 
-            image_state.img = Image_read(filename.toStdString());
+            image_state.img = cv::imread(filename.toStdString(), cv::IMREAD_UNCHANGED);
             image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
 
             QImage Qimg = Mat2QImage(image_state.img);
@@ -245,7 +253,7 @@ void MainWindow::on_pB_dirs_save_all_clicked()
                     MainWindow::filename = image_list[i-number];
 
                     if(isReasonablefile(filename.toStdString()) == true) {
-                        image_state.img = Image_read(filename.toStdString());
+                        image_state.img = cv::imread(filename.toStdString(), cv::IMREAD_UNCHANGED);
                         image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
 
                         QImage Qimg = Mat2QImage(image_state.img);
@@ -477,6 +485,105 @@ void MainWindow::on_pB_equalizehist_clicked()
     } else setprint("未读取到图片文件");
 }
 
+void MainWindow::on_pushButton_twovalue_otsu_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::otsu;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+void MainWindow::on_pushButton_twovalue_triangle_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::triangle;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+void MainWindow::on_pB_flip_horizontal_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::flip_horizontal;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+void MainWindow::on_pB_flip_vertical_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::flip_vertical;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+void MainWindow::on_pB_padding_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::padding;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
 
 // 将 newimage 转化为 image
 void MainWindow::on_pB_turn_image_clicked()
@@ -513,5 +620,4 @@ void MainWindow::on_pB_opencv_show_clicked()
         cv::waitKey(0);
     } else setprint("未选择图片文件");
 }
-
 

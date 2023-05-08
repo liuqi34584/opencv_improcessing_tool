@@ -31,7 +31,12 @@ enum mode_set {
     one_channel_b,
     one_channel_g,
     one_channel_r,
-    equalizehist
+    equalizehist,
+    otsu,
+    triangle,
+    flip_horizontal,
+    flip_vertical,
+    padding
 };
 
 // 定义阈值相关参数结构体
@@ -62,6 +67,15 @@ struct Dilate {
     int StructuringElement;
 };
 
+// 定义padding相关参数结构体
+struct Padding {
+    int top = 0;
+    int bottom = 0;
+    int left = 0;
+    int right = 0;
+    int bordermode = 0;
+};
+
 
 struct im_state {
     cv::Mat img;
@@ -77,10 +91,10 @@ struct im_state {
     Resize resize;
     Erode erode;
     Dilate dilate;
+    Padding padding;
 };
 extern im_state image_state;
 
-extern cv::Mat Image_read(cv::String file_path);
 extern QImage Mat2QImage(const cv::Mat& mat);
 extern void Qimshow(QLabel *label, QImage Qimg);
 extern void Qimclear(QLabel *label);

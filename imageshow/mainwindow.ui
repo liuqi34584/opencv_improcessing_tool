@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>860</width>
-    <height>800</height>
+    <height>880</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -35,8 +35,8 @@
      <rect>
       <x>20</x>
       <y>510</y>
-      <width>101</width>
-      <height>31</height>
+      <width>61</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -44,7 +44,8 @@
 border:3px solid black;</string>
     </property>
     <property name="text">
-     <string>载入单张图片</string>
+     <string>载入
+图片</string>
     </property>
    </widget>
    <widget class="QLabel" name="newimage">
@@ -85,9 +86,9 @@ border:0px solid black;</string>
    <widget class="QPushButton" name="pushButton_twovalue">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>480</x>
       <y>700</y>
-      <width>91</width>
+      <width>81</width>
       <height>28</height>
      </rect>
     </property>
@@ -96,7 +97,7 @@ border:0px solid black;</string>
 border:3px solid black;</string>
     </property>
     <property name="text">
-     <string>二值处理</string>
+     <string>阈值</string>
     </property>
    </widget>
    <widget class="QLabel" name="image">
@@ -128,9 +129,9 @@ border:0px solid black;</string>
    <widget class="QLabel" name="twovalue">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>300</x>
       <y>690</y>
-      <width>321</width>
+      <width>371</width>
       <height>81</height>
      </rect>
     </property>
@@ -154,9 +155,9 @@ border:3px solid black;</string>
    <widget class="QComboBox" name="cBox_twovalue_threshold_value">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>310</x>
       <y>700</y>
-      <width>201</width>
+      <width>161</width>
       <height>25</height>
      </rect>
     </property>
@@ -1464,9 +1465,9 @@ border:3px solid black;</string>
    <widget class="QComboBox" name="cBox_twovalue_threshold_max">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>310</x>
       <y>720</y>
-      <width>201</width>
+      <width>161</width>
       <height>25</height>
      </rect>
     </property>
@@ -2757,35 +2758,38 @@ border:3px solid black;</string>
    <widget class="QComboBox" name="cBox_twovalue_threshold_mode">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>310</x>
       <y>740</y>
-      <width>201</width>
+      <width>161</width>
       <height>25</height>
      </rect>
     </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
     <item>
      <property name="text">
-      <string>类型:THRESH_BINARY</string>
+      <string>THRESH_BINARY</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>类型:THRESH_BINARY_INV</string>
+      <string>THRESH_BINARY_INV</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>类型:THRESH_TRUNC</string>
+      <string>THRESH_TRUNC</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>类型:THRESH_TOZERO</string>
+      <string>THRESH_TOZERO</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>类型:THRESH_TOZERO_INV</string>
+      <string>THRESH_TOZERO_INV</string>
      </property>
     </item>
    </widget>
@@ -2812,9 +2816,9 @@ border:1px solid black;</string>
    <widget class="QPushButton" name="pB_dirs_load">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>310</x>
       <y>510</y>
-      <width>91</width>
+      <width>71</width>
       <height>71</height>
      </rect>
     </property>
@@ -2823,15 +2827,16 @@ border:1px solid black;</string>
 border:3px solid black;</string>
     </property>
     <property name="text">
-     <string>载入文件夹</string>
+     <string>载入
+文件夹</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pB_dir_save">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>100</x>
       <y>510</y>
-      <width>81</width>
+      <width>171</width>
       <height>31</height>
      </rect>
     </property>
@@ -2840,15 +2845,15 @@ border:3px solid black;</string>
 border:3px solid black;</string>
     </property>
     <property name="text">
-     <string>保存图片</string>
+     <string>保存当前图片</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_twovalue_gray">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>730</y>
-      <width>91</width>
+      <x>480</x>
+      <y>735</y>
+      <width>81</width>
       <height>28</height>
      </rect>
     </property>
@@ -2857,7 +2862,7 @@ border:3px solid black;</string>
 border:3px solid black;</string>
     </property>
     <property name="text">
-     <string>灰度处理</string>
+     <string>灰度</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pB_turn_image">
@@ -2880,7 +2885,7 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_resize">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>310</x>
       <y>610</y>
       <width>71</width>
       <height>61</height>
@@ -2897,7 +2902,7 @@ border:3px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_resize_hight">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>420</x>
       <y>610</y>
       <width>100</width>
       <height>25</height>
@@ -2917,7 +2922,7 @@ border:1px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_resize_width">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>560</x>
       <y>610</y>
       <width>100</width>
       <height>25</height>
@@ -2937,7 +2942,7 @@ border:1px solid black;</string>
    <widget class="QLabel" name="label_resize_gao">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>390</x>
       <y>610</y>
       <width>25</width>
       <height>25</height>
@@ -2958,7 +2963,7 @@ border:1px solid black;</string>
    <widget class="QLabel" name="label_resize_kuan">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>530</x>
       <y>610</y>
       <width>25</width>
       <height>25</height>
@@ -2979,11 +2984,14 @@ border:1px solid black;</string>
    <widget class="QComboBox" name="cBox_resize_mode">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>390</x>
       <y>640</y>
       <width>271</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 5px;
@@ -3040,7 +3048,7 @@ border:3px solid black;</string>
      <rect>
       <x>10</x>
       <y>500</y>
-      <width>211</width>
+      <width>281</width>
       <height>91</height>
      </rect>
     </property>
@@ -3064,9 +3072,9 @@ border:3px solid black;</string>
    <widget class="QLabel" name="dirs">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>300</x>
       <y>500</y>
-      <width>421</width>
+      <width>371</width>
       <height>91</height>
      </rect>
     </property>
@@ -3090,8 +3098,8 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_dirs_next">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>550</y>
+      <x>390</x>
+      <y>510</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -3107,8 +3115,8 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_dirs_pre">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>510</y>
+      <x>390</x>
+      <y>550</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -3124,9 +3132,9 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_dirs_save_all">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>470</x>
       <y>510</y>
-      <width>101</width>
+      <width>191</width>
       <height>31</height>
      </rect>
     </property>
@@ -3138,29 +3146,12 @@ border:3px solid black;</string>
      <string>保存所有图片</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pB_dirs_stop">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>510</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius: 12px;
-border:3px solid black;</string>
-    </property>
-    <property name="text">
-     <string>停止处理</string>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="lineEdit_dir_filename">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>100</x>
       <y>550</y>
-      <width>191</width>
+      <width>171</width>
       <height>31</height>
      </rect>
     </property>
@@ -3178,9 +3169,9 @@ border:1px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_dirs_filename">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>470</x>
       <y>550</y>
-      <width>221</width>
+      <width>191</width>
       <height>31</height>
      </rect>
     </property>
@@ -3224,6 +3215,9 @@ border:1px solid black;</string>
       <height>21</height>
      </rect>
     </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 6px;
 border:0px solid black;</string>
@@ -3233,6 +3227,9 @@ border:0px solid black;</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="textInteractionFlags">
+     <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
     </property>
    </widget>
    <widget class="QPushButton" name="pB_turn_channels_there">
@@ -3277,6 +3274,9 @@ border:3px solid black;</string>
       <width>191</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 5px;
@@ -3491,6 +3491,9 @@ border:1px solid black;</string>
       <height>27</height>
      </rect>
     </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 5px;
 border:1px solid black;</string>
@@ -3616,6 +3619,254 @@ border:3px solid black;</string>
      <string>直方图均衡</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_twovalue_triangle">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>735</y>
+      <width>81</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>TRIANGLE</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_twovalue_otsu">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>700</y>
+      <width>81</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>OTSU</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_flip_horizontal">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>790</y>
+      <width>71</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>水平翻转</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_flip_vertical">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>825</y>
+      <width>71</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>垂直翻转</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="flip_padding">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>780</y>
+      <width>371</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_padding">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>790</y>
+      <width>71</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>边缘填充</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cBox_padding_mode">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>790</y>
+      <width>191</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>BORDER_CONSTANT</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>BORDER_REPLICATE</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>BORDER_REFLECT</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>BORDER_WRAP</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>BORDER_REFLECT_101</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>BORDER_ISOLATED</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_padding_top">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>825</y>
+      <width>41</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_padding_bottom">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>825</y>
+      <width>41</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_padding_left">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>825</y>
+      <width>41</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_padding_right">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>825</y>
+      <width>41</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_paddling">
+    <property name="geometry">
+     <rect>
+      <x>405</x>
+      <y>825</y>
+      <width>51</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>范围：</string>
+    </property>
+   </widget>
+   <zorder>flip_padding</zorder>
    <zorder>dilate</zorder>
    <zorder>erode</zorder>
    <zorder>dir</zorder>
@@ -3644,7 +3895,6 @@ border:3px solid black;</string>
    <zorder>pB_dirs_next</zorder>
    <zorder>pB_dirs_pre</zorder>
    <zorder>pB_dirs_save_all</zorder>
-   <zorder>pB_dirs_stop</zorder>
    <zorder>lineEdit_dir_filename</zorder>
    <zorder>lineEdit_dirs_filename</zorder>
    <zorder>label_newimage_text</zorder>
@@ -3666,6 +3916,17 @@ border:3px solid black;</string>
    <zorder>pB_turn_channels_g</zorder>
    <zorder>pB_turn_channels_r</zorder>
    <zorder>pB_equalizehist</zorder>
+   <zorder>pushButton_twovalue_triangle</zorder>
+   <zorder>pushButton_twovalue_otsu</zorder>
+   <zorder>pB_flip_horizontal</zorder>
+   <zorder>pB_flip_vertical</zorder>
+   <zorder>pB_padding</zorder>
+   <zorder>cBox_padding_mode</zorder>
+   <zorder>lineEdit_padding_top</zorder>
+   <zorder>lineEdit_padding_bottom</zorder>
+   <zorder>lineEdit_padding_left</zorder>
+   <zorder>lineEdit_padding_right</zorder>
+   <zorder>label_paddling</zorder>
   </widget>
  </widget>
  <resources>
