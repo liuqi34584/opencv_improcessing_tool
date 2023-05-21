@@ -50,7 +50,6 @@ QImage Mat2QImage(const cv::Mat& mat)
     }
 }
 
-
 void Qimshow(QLabel *label, QImage Qimg)
 {
     Qimg = Qimg.scaled(label->size(),Qt::KeepAspectRatio);
@@ -140,23 +139,23 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
             case 1:
             cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
             cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
-            cv::threshold(gray_mat, otsu_mat, 0, 255, image_state.threshold.mode|cv::THRESH_OTSU);
+            image_state.threshold.computed = cv::threshold(gray_mat, otsu_mat, 0, 255, image_state.threshold.mode|cv::THRESH_OTSU);
             break;
 
             case 3:
             cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
-            cv::threshold(gray_mat, otsu_mat, 0, 255, image_state.threshold.mode|cv::THRESH_OTSU);
+            image_state.threshold.computed = cv::threshold(gray_mat, otsu_mat, 0, 255, image_state.threshold.mode|cv::THRESH_OTSU);
             break;
 
             case 4:
             cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
-            cv::threshold(gray_mat, otsu_mat, 0, 255, image_state.threshold.mode|cv::THRESH_OTSU);
+            image_state.threshold.computed = cv::threshold(gray_mat, otsu_mat, 0, 255, image_state.threshold.mode|cv::THRESH_OTSU);
             break;
         }
 
         return otsu_mat;
     }
-    if(mode == mode_set::triangle)  // 对图片进行triangle处理
+    if(mode == mode_set::triangle)  // 对图片进行triangle阈值处理
     {
         cv::Mat bgr_mat;
         cv::Mat gray_mat, triangle_mat;
@@ -165,18 +164,17 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
             case 1:
             cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
             cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
-            cv::threshold(gray_mat, triangle_mat, 0, 255, image_state.threshold.mode|cv::THRESH_TRIANGLE);
+            image_state.threshold.computed = cv::threshold(gray_mat, triangle_mat, 0, 255, image_state.threshold.mode|cv::THRESH_TRIANGLE);
             break;
 
             case 3:
             cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
-            cv::threshold(gray_mat, triangle_mat, 0, 255, image_state.threshold.mode|cv::THRESH_TRIANGLE);
-
+            image_state.threshold.computed = cv::threshold(gray_mat, triangle_mat, 0, 255, image_state.threshold.mode|cv::THRESH_TRIANGLE);
             break;
 
             case 4:
             cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
-            cv::threshold(gray_mat, triangle_mat, 0, 255, image_state.threshold.mode|cv::THRESH_TRIANGLE);
+            image_state.threshold.computed = cv::threshold(gray_mat, triangle_mat, 0, 255, image_state.threshold.mode|cv::THRESH_TRIANGLE);
             break;
         }
 
@@ -340,7 +338,7 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
 
         return g_mat;
     }
-    if(mode == mode_set::one_channel_r)  // 提取出图片的 G 通道
+    if(mode == mode_set::one_channel_r)  // 提取出图片的 R 通道
     {
         cv::Mat gray_mat,bgr_mat;
         cv::Mat r_mat;
@@ -435,7 +433,356 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
 
         return padding_mat;
     }
+    if(mode == mode_set::gray2color) //对图片进行灰度转彩色
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat color_mat;
 
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::applyColorMap(gray_mat, color_mat, cv::COLORMAP_BONE);
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::applyColorMap(gray_mat, color_mat, cv::COLORMAP_BONE);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+            cv::applyColorMap(gray_mat, color_mat, cv::COLORMAP_BONE);
+            break;
+        }
+
+        return color_mat;
+    }
+    if(mode == mode_set::log_turn)  // 对图片进行对数变换
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat float_mat, log_mat;
+
+        // 必须单通道才能转换
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            gray_mat.convertTo(float_mat, CV_32F);  // 转换为32位浮点型图像
+            cv::log(1 + float_mat, log_mat);  // 对数变换
+            log_mat = log_mat * image_state.log.C;
+            log_mat.convertTo(log_mat, CV_8U);  // 转换为8位无符号整型图像
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            gray_mat.convertTo(float_mat, CV_32F);  // 转换为32位浮点型图像
+            cv::log(1 + float_mat, log_mat);  // 对数变换
+            log_mat = log_mat * image_state.log.C;
+            log_mat.convertTo(log_mat, CV_8U);  // 转换为8位无符号整型图像
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+
+            gray_mat.convertTo(float_mat, CV_32F);  // 转换为32位浮点型图像
+            cv::log(1 + float_mat, log_mat);  // 对数变换
+            log_mat = log_mat * image_state.log.C;
+            log_mat.convertTo(log_mat, CV_8U);  // 转换为8位无符号整型图像
+            break;
+        }
+
+        return log_mat;
+    }
+    if(mode == mode_set::gamma_turn) // 对图片进行gamma变换
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat float_mat, gamma_mat;
+
+        // 必须单通道才能转换
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            gray_mat.convertTo(float_mat, CV_32F);  // 转换为32位浮点型图像
+            cv::pow(float_mat / 255.0, image_state.gamma.value, gamma_mat);
+            gamma_mat *= 255;
+            gamma_mat.convertTo(gamma_mat, CV_8U);  // 转换为8位无符号整型图像
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            gray_mat.convertTo(float_mat, CV_32F);  // 转换为32位浮点型图像
+            cv::pow(float_mat / 255.0, image_state.gamma.value, gamma_mat);
+            gamma_mat *= 255;
+            gamma_mat.convertTo(gamma_mat, CV_8U);  // 转换为8位无符号整型图像
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+
+            gray_mat.convertTo(float_mat, CV_32F);  // 转换为32位浮点型图像
+            cv::pow(float_mat / 255.0, image_state.gamma.value, gamma_mat);
+            gamma_mat *= 255;
+            gamma_mat.convertTo(gamma_mat, CV_8U);  // 转换为8位无符号整型图像
+            break;
+        }
+
+        return gamma_mat;
+    }
+    if(mode == mode_set::blur_turn) // 均值滤波
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat blur_mat;
+
+        // 必须单通道才能转换
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            cv::blur(gray_mat, blur_mat, \
+                     cv::Size(image_state.blur.kernel_hight, \
+                              image_state.blur.kernel_width));
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            cv::blur(gray_mat, blur_mat, \
+                     cv::Size(image_state.blur.kernel_hight, \
+                              image_state.blur.kernel_width));
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+
+            cv::blur(gray_mat, blur_mat, \
+                     cv::Size(image_state.blur.kernel_hight, \
+                              image_state.blur.kernel_width));
+            break;
+        }
+
+        return blur_mat;
+    }
+    if(mode == mode_set::boxfilter) // 盒子滤波
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat boxfilter_mat;
+
+        // 必须单通道才能转换
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            cv::boxFilter(gray_mat, boxfilter_mat, -1,\
+                          cv::Size(image_state.boxfilter.kernel_hight, \
+                                   image_state.boxfilter.kernel_width));
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            cv::boxFilter(gray_mat, boxfilter_mat, -1,\
+                          cv::Size(image_state.boxfilter.kernel_hight, \
+                                   image_state.boxfilter.kernel_width));
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+
+            cv::boxFilter(gray_mat, boxfilter_mat, -1,\
+                          cv::Size(image_state.boxfilter.kernel_hight, \
+                                   image_state.boxfilter.kernel_width));
+            break;
+        }
+
+        return boxfilter_mat;
+    }
+    if(mode == mode_set::gaussianblur) // 高斯滤波
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat gaussianblur_mat;
+
+        // 必须单通道才能转换
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            cv::GaussianBlur(gray_mat, gaussianblur_mat,\
+                          cv::Size(image_state.boxfilter.kernel_hight, \
+                                   image_state.boxfilter.kernel_width), \
+                          image_state.gaussianblur.sigma);
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            cv::GaussianBlur(gray_mat, gaussianblur_mat,\
+                          cv::Size(image_state.boxfilter.kernel_hight, \
+                                   image_state.boxfilter.kernel_width), \
+                          image_state.gaussianblur.sigma);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+
+            cv::GaussianBlur(gray_mat, gaussianblur_mat,\
+                          cv::Size(image_state.boxfilter.kernel_hight, \
+                                   image_state.boxfilter.kernel_width), \
+                          image_state.gaussianblur.sigma);
+            break;
+        }
+
+        return gaussianblur_mat;
+    }
+    if(mode == mode_set::medianblur) // 中值滤波
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat medianblur_mat;
+
+        // 滤波核大小只能为奇数
+        image_state.medianblur.kernel_hight = makeOdd(image_state.medianblur.kernel_hight);
+
+        // 必须单通道才能转换
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            cv::medianBlur(gray_mat, medianblur_mat, image_state.medianblur.kernel_hight);
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            cv::medianBlur(gray_mat, medianblur_mat, image_state.medianblur.kernel_hight);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+
+            cv::medianBlur(gray_mat, medianblur_mat, image_state.medianblur.kernel_hight);
+            break;
+        }
+
+        return medianblur_mat;
+    }
+    if(mode == mode_set::bilateralfilter) // 双边滤波
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat bilateralfilter_mat;
+
+        // 必须单通道才能转换
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            cv::bilateralFilter(gray_mat, bilateralfilter_mat, \
+                                image_state.bilateralfilter.diameter, \
+                                image_state.bilateralfilter.sigmaColor, \
+                                image_state.bilateralfilter.sigmaSpace);
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+
+            cv::bilateralFilter(gray_mat, bilateralfilter_mat, \
+                                image_state.bilateralfilter.diameter, \
+                                image_state.bilateralfilter.sigmaColor, \
+                                image_state.bilateralfilter.sigmaSpace);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+
+            cv::bilateralFilter(gray_mat, bilateralfilter_mat, \
+                                image_state.bilateralfilter.diameter, \
+                                image_state.bilateralfilter.sigmaColor, \
+                                image_state.bilateralfilter.sigmaSpace);
+            break;
+        }
+
+        return bilateralfilter_mat;
+    }
+    if(mode == mode_set::adaptivethreshold) // 自适应阈值滤波
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat adaptivethreshold_mat;
+
+        // 必须单通道才能转换
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::adaptiveThreshold(gray_mat, adaptivethreshold_mat, \
+                                  255, cv::ADAPTIVE_THRESH_MEAN_C, cv::THRESH_BINARY, 11, 8);
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::adaptiveThreshold(gray_mat, adaptivethreshold_mat, \
+                                  255, cv::ADAPTIVE_THRESH_MEAN_C, cv::THRESH_BINARY, 11, 8);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+            cv::adaptiveThreshold(gray_mat, adaptivethreshold_mat, \
+                                  255, cv::ADAPTIVE_THRESH_MEAN_C, cv::THRESH_BINARY, 11, 8);
+            break;
+        }
+
+        return adaptivethreshold_mat;
+    }
+    if(mode == mode_set::canny_turn)  // canny边缘检测器
+    {
+        cv::Mat gray_mat, bgr_mat;
+        cv::Mat canny_mat;
+
+        // 对 apertureSize 进行奇数判断
+        image_state.canny.apertureSize = makeOdd(image_state.canny.apertureSize);
+        // apertureSize 必须3-7之间
+        image_state.canny.apertureSize = (image_state.canny.apertureSize < 3) ? 3 : \
+                                         (image_state.canny.apertureSize > 7) ? 7 : \
+                                          image_state.canny.apertureSize;
+
+        // 必须单通道才能转换
+        switch(mat.channels()){
+            case 1:
+            cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
+            cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::Canny(gray_mat, canny_mat, \
+                      image_state.canny.threshold1, \
+                      image_state.canny.threshold2, \
+                      image_state.canny.apertureSize);
+            break;
+
+            case 3:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+            cv::Canny(gray_mat, canny_mat, \
+                      image_state.canny.threshold1, \
+                      image_state.canny.threshold2, \
+                      image_state.canny.apertureSize);
+            break;
+
+            case 4:
+            cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
+            cv::Canny(gray_mat, canny_mat, \
+                      image_state.canny.threshold1, \
+                      image_state.canny.threshold2, \
+                      image_state.canny.apertureSize);
+            break;
+        }
+
+        return canny_mat;
+    }
 
     return mat; //默认返回值
 }
@@ -501,7 +848,15 @@ bool isReasonablefile(cv::String filename)
     else return true;
 }
 
-
+// 将偶数变为奇数
+int makeOdd(int num)
+{
+    if (num % 2 == 0) {
+        // 如果是偶数，加上1
+        num++;
+    }
+    return num;
+}
 
 
 

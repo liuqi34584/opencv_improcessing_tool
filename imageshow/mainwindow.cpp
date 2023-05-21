@@ -49,26 +49,60 @@ void MainWindow::get_global_state()
     image_state.save_dirs_name = ui->lineEdit_dirs_filename->text().toStdString();
 
     // 刷新 resize 相关的值
-    image_state.resize.hight = std::stoi(ui->lineEdit_resize_hight->text().toStdString());
-    image_state.resize.width = std::stoi(ui->lineEdit_resize_width->text().toStdString());
+    image_state.resize.hight = std::abs(std::stoi(ui->lineEdit_resize_hight->text().toStdString()));
+    image_state.resize.width = std::abs(std::stoi(ui->lineEdit_resize_width->text().toStdString()));
     image_state.resize.mode = ui->cBox_resize_mode->currentIndex();
 
     // 刷新 erode 相关的值
-    image_state.erode.kernel_hight = std::stoi(ui->lineEdit_erode_kernel_hight->text().toStdString());
-    image_state.erode.kernel_width = std::stoi(ui->lineEdit_erode_kernel_width->text().toStdString());
+    image_state.erode.kernel_hight = std::abs(std::stoi(ui->lineEdit_erode_kernel_hight->text().toStdString()));
+    image_state.erode.kernel_width = std::abs(std::stoi(ui->lineEdit_erode_kernel_width->text().toStdString()));
     image_state.erode.StructuringElement = ui->cBox_erode_Structuring->currentIndex();
 
     // 刷新 dilate 相关的值
-    image_state.dilate.kernel_hight = std::stoi(ui->lineEdit_dilate_kernel_hight->text().toStdString());
-    image_state.dilate.kernel_width = std::stoi(ui->lineEdit_dilate_kernel_width->text().toStdString());
+    image_state.dilate.kernel_hight = std::abs(std::stoi(ui->lineEdit_dilate_kernel_hight->text().toStdString()));
+    image_state.dilate.kernel_width = std::abs(std::stoi(ui->lineEdit_dilate_kernel_width->text().toStdString()));
     image_state.dilate.StructuringElement = ui->cBox_dilate_Structuring->currentIndex();
 
     // 刷新 padding 相关的值
-    image_state.padding.top = std::stoi(ui->lineEdit_padding_top->text().toStdString());
-    image_state.padding.bottom = std::stoi(ui->lineEdit_padding_bottom->text().toStdString());
-    image_state.padding.left = std::stoi(ui->lineEdit_padding_left->text().toStdString());
-    image_state.padding.right = std::stoi(ui->lineEdit_padding_right->text().toStdString());
+    image_state.padding.top = std::abs(std::stoi(ui->lineEdit_padding_top->text().toStdString()));
+    image_state.padding.bottom = std::abs(std::stoi(ui->lineEdit_padding_bottom->text().toStdString()));
+    image_state.padding.left = std::abs(std::stoi(ui->lineEdit_padding_left->text().toStdString()));
+    image_state.padding.right = std::abs(std::stoi(ui->lineEdit_padding_right->text().toStdString()));
     image_state.padding.bordermode = ui->cBox_padding_mode->currentIndex();
+
+    // 刷新 log变换 相关的值
+    image_state.log.C = std::abs(std::stoi(ui->lineEdit_log_C->text().toStdString()));
+
+    // 刷新 gamma变换 相关的值
+    image_state.gamma.value = std::abs(std::stof(ui->lineEdit_gamma->text().toStdString()));
+
+    // 刷新 均值滤波 相关的值
+    image_state.blur.kernel_hight = std::abs(std::stoi(ui->lineEdit_filter_kernel_hight->text().toStdString()));
+    image_state.blur.kernel_width = std::abs(std::stoi(ui->lineEdit_filter_kernel_width->text().toStdString()));
+
+    // 刷新 盒子滤波 相关的值
+    image_state.boxfilter.kernel_hight = std::abs(std::stoi(ui->lineEdit_filter_kernel_hight->text().toStdString()));
+    image_state.boxfilter.kernel_width = std::abs(std::stoi(ui->lineEdit_filter_kernel_width->text().toStdString()));
+
+    // 刷新 高斯滤波 相关的值
+    image_state.gaussianblur.kernel_hight = std::abs(std::stoi(ui->lineEdit_gaussianblur_kernel_hight->text().toStdString()));
+    image_state.gaussianblur.kernel_width = std::abs(std::stoi(ui->lineEdit_gaussianblur_kernel_width->text().toStdString()));
+    image_state.gaussianblur.sigma = std::abs(std::stof(ui->lineEdit_gaussianblur_sigma->text().toStdString()));
+
+    // 刷新 中值滤波 相关的值
+    image_state.medianblur.kernel_hight = std::abs(std::stoi(ui->lineEdit_filter_kernel_hight->text().toStdString()));
+    image_state.medianblur.kernel_width = std::abs(std::stoi(ui->lineEdit_filter_kernel_width->text().toStdString()));
+
+    // 刷新 双边滤波 相关的值
+    image_state.bilateralfilter.diameter = std::abs(std::stoi(ui->lineEdit_bilateralfilter_d->text().toStdString()));
+    image_state.bilateralfilter.sigmaColor = std::abs(std::stof(ui->lineEdit_bilateralfilter_c->text().toStdString()));
+    image_state.bilateralfilter.sigmaSpace = std::abs(std::stof(ui->lineEdit_bilateralfilter_p->text().toStdString()));
+
+    // 刷新 canny边缘检测 相关的值
+    image_state.canny.threshold1 = std::abs(std::stoi(ui->lineEdit_canny_threshold1->text().toStdString()));
+    image_state.canny.threshold2 = std::abs(std::stoi(ui->lineEdit_canny_threshold2->text().toStdString()));
+    image_state.canny.apertureSize = std::abs(std::stoi(ui->lineEdit_canny_apertureSize->text().toStdString()));
+
 }
 
 // 利用界面 label 显示打印信息
@@ -168,6 +202,7 @@ void MainWindow::on_pB_dirs_next_clicked()
     if(!image_list.isEmpty()) {
         int index = image_list.indexOf(filename);
         if ( 0 <= index && index < image_list.size()-1) index++;
+        else setprint(" 已经到文件列表末！！！ ");
         filename = image_list[index];
 
         if(isReasonablefile(filename.toStdString()) == true) {
@@ -194,6 +229,7 @@ void MainWindow::on_pB_dirs_pre_clicked()
     if(!image_list.isEmpty()) {
         int index = image_list.indexOf(filename);
         if ( 0 < index && index < image_list.size()) index--;
+        else setprint(" 已经到文件列表头！！！ ");
         filename = image_list[index];
 
         if(isReasonablefile(filename.toStdString()) == true) {
@@ -425,6 +461,7 @@ void MainWindow::on_pB_turn_channels_b_clicked()
     } else setprint("未读取到图片文件");
 }
 
+// 提取出图片的单个 G 通道
 void MainWindow::on_pB_turn_channels_g_clicked()
 {
     get_global_state();  // 获取全局设置状态
@@ -445,6 +482,7 @@ void MainWindow::on_pB_turn_channels_g_clicked()
     } else setprint("未读取到图片文件");
 }
 
+// 提取出图片的单个 R 通道
 void MainWindow::on_pB_turn_channels_r_clicked()
 {
     get_global_state();  // 获取全局设置状态
@@ -502,6 +540,8 @@ void MainWindow::on_pushButton_twovalue_otsu_clicked()
         Qimshow(ui->newimage, Qnewimg);
 
         Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("OTSU计算得到的阈值为：  " + QString::number(image_state.threshold.computed));
     } else setprint("未读取到图片文件");
 }
 
@@ -522,6 +562,8 @@ void MainWindow::on_pushButton_twovalue_triangle_clicked()
         Qimshow(ui->newimage, Qnewimg);
 
         Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("TRIANGLE计算得到的阈值为：  " + QString::number(image_state.threshold.computed));
     } else setprint("未读取到图片文件");
 }
 
@@ -582,6 +624,250 @@ void MainWindow::on_pB_padding_clicked()
         Qimshow(ui->newimage, Qnewimg);
 
         Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+void MainWindow::on_pB_gray2color_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::gray2color;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+void MainWindow::on_pB_log_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::log_turn;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+// 伽马变换槽函数
+void MainWindow::on_pB_gamma_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::gamma_turn;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+    } else setprint("未读取到图片文件");
+}
+
+// 均值滤波槽函数
+void MainWindow::on_pB_blur_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::blur_turn;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("均值滤波成功！  滤波核大小为："  + \
+                 QString::number(image_state.blur.kernel_hight) + " * " + \
+                 QString::number(image_state.blur.kernel_width));
+
+    } else setprint("未读取到图片文件");
+}
+
+// 盒子滤波槽函数
+void MainWindow::on_pB_boxfilter_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::boxfilter;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("盒子滤波成功！  滤波核大小为："  + \
+                 QString::number(image_state.boxfilter.kernel_hight) + " * " + \
+                 QString::number(image_state.boxfilter.kernel_width));
+
+    } else setprint("未读取到图片文件");
+}
+
+// 高斯滤波槽函数
+void MainWindow::on_pB_gaussianblur_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::gaussianblur;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("高斯滤波成功!    滤波核大小为："  + \
+                 QString::number(image_state.gaussianblur.kernel_hight) + " * " + \
+                 QString::number(image_state.gaussianblur.kernel_width) + \
+                 "    高斯函数标准差sigma为：" + QString::number(image_state.gaussianblur.sigma));
+
+    } else setprint("未读取到图片文件");
+}
+
+// 中值滤波槽函数
+void MainWindow::on_pB_medianblur_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::medianblur;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("中值滤波成功!    滤波核大小为："  + \
+                 QString::number(image_state.medianblur.kernel_hight) + " * " + \
+                 QString::number(image_state.medianblur.kernel_hight));
+
+    } else setprint("未读取到图片文件");
+}
+
+// 双边滤波槽函数
+void MainWindow::on_pB_bilateralfilter_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::bilateralfilter;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("双边滤波成功!    滤波器直径为：" + \
+                 QString::number(image_state.bilateralfilter.diameter) + \
+                 "    颜色空间标准差为：" + QString::number(image_state.bilateralfilter.sigmaColor) + \
+                 "    坐标空间标准差为：" + QString::number(image_state.bilateralfilter.sigmaSpace));
+
+    } else setprint("未读取到图片文件");
+}
+
+// 自适应阈值滤波
+void MainWindow::on_pB_adaptivethreshold_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::adaptivethreshold;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("自适应阈值滤波成功!");
+
+    } else setprint("未读取到图片文件");
+}
+
+// canny边缘检测器
+void MainWindow::on_pB_canny_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::canny_turn;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("canny边缘检测成功!    第一个阈值为 " + \
+                 QString::number(image_state.canny.threshold1) + \
+                 "    第二个阈值为 " + QString::number(image_state.canny.threshold2) + \
+                 "    Sobel算子的孔径大小为 " + QString::number(image_state.canny.apertureSize));
+
     } else setprint("未读取到图片文件");
 }
 

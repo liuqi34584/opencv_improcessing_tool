@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>860</width>
-    <height>880</height>
+    <width>1500</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -18,7 +18,7 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>860</width>
+    <width>2000</width>
     <height>2000</height>
    </size>
   </property>
@@ -39,6 +39,9 @@
       <height>71</height>
      </rect>
     </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
 border:3px solid black;</string>
@@ -51,7 +54,7 @@ border:3px solid black;</string>
    <widget class="QLabel" name="newimage">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>620</x>
       <y>40</y>
       <width>411</width>
       <height>411</height>
@@ -87,10 +90,13 @@ border:0px solid black;</string>
     <property name="geometry">
      <rect>
       <x>480</x>
-      <y>700</y>
+      <y>710</y>
       <width>81</width>
-      <height>28</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -130,9 +136,9 @@ border:0px solid black;</string>
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>690</y>
+      <y>700</y>
       <width>371</width>
-      <height>81</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -156,10 +162,13 @@ border:3px solid black;</string>
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>700</y>
+      <y>710</y>
       <width>161</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="currentIndex">
      <number>150</number>
@@ -1451,7 +1460,7 @@ border:3px solid black;</string>
       <x>300</x>
       <y>600</y>
       <width>371</width>
-      <height>81</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1466,10 +1475,13 @@ border:3px solid black;</string>
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>720</y>
+      <y>730</y>
       <width>161</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="currentIndex">
      <number>255</number>
@@ -2759,7 +2771,7 @@ border:3px solid black;</string>
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>740</y>
+      <y>750</y>
       <width>161</width>
       <height>25</height>
      </rect>
@@ -2822,6 +2834,9 @@ border:1px solid black;</string>
       <height>71</height>
      </rect>
     </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
 border:3px solid black;</string>
@@ -2834,11 +2849,14 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_dir_save">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>90</x>
       <y>510</y>
-      <width>171</width>
+      <width>181</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -2852,10 +2870,13 @@ border:3px solid black;</string>
     <property name="geometry">
      <rect>
       <x>480</x>
-      <y>735</y>
+      <y>750</y>
       <width>81</width>
-      <height>28</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -2868,11 +2889,14 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_turn_image">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>550</y>
-      <width>131</width>
+      <x>155</x>
+      <y>610</y>
+      <width>125</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -2888,8 +2912,11 @@ border:3px solid black;</string>
       <x>310</x>
       <y>610</y>
       <width>71</width>
-      <height>61</height>
+      <height>71</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -2905,7 +2932,7 @@ border:3px solid black;</string>
       <x>420</x>
       <y>610</y>
       <width>100</width>
-      <height>25</height>
+      <height>28</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -2925,7 +2952,7 @@ border:1px solid black;</string>
       <x>560</x>
       <y>610</y>
       <width>100</width>
-      <height>25</height>
+      <height>28</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -2985,7 +3012,7 @@ border:1px solid black;</string>
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>640</y>
+      <y>650</y>
       <width>271</width>
       <height>27</height>
      </rect>
@@ -3029,11 +3056,14 @@ border:1px solid black;</string>
    <widget class="QPushButton" name="pB_opencv_show">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>510</y>
-      <width>131</width>
+      <x>20</x>
+      <y>610</y>
+      <width>125</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -3099,10 +3129,13 @@ border:3px solid black;</string>
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>510</y>
+      <y>550</y>
       <width>71</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -3116,10 +3149,13 @@ border:3px solid black;</string>
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>550</y>
+      <y>510</y>
       <width>71</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -3138,6 +3174,9 @@ border:3px solid black;</string>
       <height>31</height>
      </rect>
     </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
 border:3px solid black;</string>
@@ -3149,9 +3188,9 @@ border:3px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_dir_filename">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>90</x>
       <y>550</y>
-      <width>171</width>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -3189,7 +3228,7 @@ border:1px solid black;</string>
    <widget class="QLabel" name="label_newimage_text">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>630</x>
       <y>460</y>
       <width>401</width>
       <height>21</height>
@@ -3235,11 +3274,14 @@ border:0px solid black;</string>
    <widget class="QPushButton" name="pB_turn_channels_there">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>590</y>
-      <width>131</width>
+      <x>20</x>
+      <y>650</y>
+      <width>125</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -3252,11 +3294,14 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_erode">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>610</y>
-      <width>61</width>
-      <height>61</height>
+      <x>685</x>
+      <y>510</y>
+      <width>71</width>
+      <height>71</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -3269,9 +3314,9 @@ border:3px solid black;</string>
    <widget class="QComboBox" name="cBox_erode_Structuring">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>640</y>
-      <width>191</width>
+      <x>780</x>
+      <y>550</y>
+      <width>241</width>
       <height>27</height>
      </rect>
     </property>
@@ -3304,10 +3349,10 @@ border:1px solid black;</string>
    <widget class="QLabel" name="label_erode_size">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>610</y>
+      <x>780</x>
+      <y>510</y>
       <width>61</width>
-      <height>25</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
@@ -3319,16 +3364,16 @@ border:1px solid black;</string>
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>核大小：</string>
+     <string>核大小:</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit_erode_kernel_hight">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>610</y>
+      <x>850</x>
+      <y>510</y>
       <width>41</width>
-      <height>21</height>
+      <height>28</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -3345,10 +3390,10 @@ border:1px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_erode_kernel_width">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>610</y>
+      <x>920</x>
+      <y>510</y>
       <width>41</width>
-      <height>21</height>
+      <height>28</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -3365,8 +3410,8 @@ border:1px solid black;</string>
    <widget class="QLabel" name="label_X">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>610</y>
+      <x>900</x>
+      <y>510</y>
       <width>21</width>
       <height>25</height>
      </rect>
@@ -3386,10 +3431,10 @@ border:1px solid black;</string>
    <widget class="QLabel" name="erode">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>600</y>
-      <width>281</width>
-      <height>81</height>
+      <x>680</x>
+      <y>500</y>
+      <width>371</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -3403,10 +3448,10 @@ border:3px solid black;</string>
    <widget class="QLabel" name="label_dilate_size">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>700</y>
+      <x>780</x>
+      <y>610</y>
       <width>61</width>
-      <height>25</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
@@ -3418,16 +3463,16 @@ border:3px solid black;</string>
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>核大小：</string>
+     <string>核大小:</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit_dilate_kernel_width">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>700</y>
+      <x>920</x>
+      <y>610</y>
       <width>41</width>
-      <height>21</height>
+      <height>28</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -3444,10 +3489,10 @@ border:1px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_dilate_kernel_hight">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>700</y>
+      <x>850</x>
+      <y>610</y>
       <width>41</width>
-      <height>21</height>
+      <height>28</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -3464,8 +3509,8 @@ border:1px solid black;</string>
    <widget class="QLabel" name="label_X_2">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>700</y>
+      <x>900</x>
+      <y>610</y>
       <width>21</width>
       <height>25</height>
      </rect>
@@ -3485,9 +3530,9 @@ border:1px solid black;</string>
    <widget class="QComboBox" name="cBox_dilate_Structuring">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>730</y>
-      <width>191</width>
+      <x>780</x>
+      <y>650</y>
+      <width>241</width>
       <height>27</height>
      </rect>
     </property>
@@ -3520,10 +3565,10 @@ border:1px solid black;</string>
    <widget class="QLabel" name="dilate">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>690</y>
-      <width>281</width>
-      <height>81</height>
+      <x>680</x>
+      <y>600</y>
+      <width>371</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -3537,11 +3582,14 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_dilate">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>700</y>
-      <width>61</width>
-      <height>61</height>
+      <x>685</x>
+      <y>610</y>
+      <width>71</width>
+      <height>71</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -3554,8 +3602,8 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_turn_channels_b">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>630</y>
+      <x>160</x>
+      <y>650</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -3571,8 +3619,8 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_turn_channels_g">
     <property name="geometry">
      <rect>
-      <x>750</x>
-      <y>630</y>
+      <x>200</x>
+      <y>650</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -3588,8 +3636,8 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_turn_channels_r">
     <property name="geometry">
      <rect>
-      <x>790</x>
-      <y>630</y>
+      <x>240</x>
+      <y>650</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -3605,11 +3653,14 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_equalizehist">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>670</y>
+      <x>1070</x>
+      <y>610</y>
       <width>131</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -3622,11 +3673,14 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pushButton_twovalue_triangle">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>735</y>
+      <x>570</x>
+      <y>750</y>
       <width>81</width>
-      <height>28</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -3639,11 +3693,14 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pushButton_twovalue_otsu">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>700</y>
+      <x>570</x>
+      <y>710</y>
       <width>81</width>
-      <height>28</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -3656,11 +3713,14 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_flip_horizontal">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>790</y>
-      <width>71</width>
-      <height>28</height>
+      <x>690</x>
+      <y>710</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -3673,11 +3733,14 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_flip_vertical">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>825</y>
-      <width>71</width>
-      <height>28</height>
+      <x>690</x>
+      <y>750</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -3690,10 +3753,10 @@ border:3px solid black;</string>
    <widget class="QLabel" name="flip_padding">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>780</y>
+      <x>680</x>
+      <y>700</y>
       <width>371</width>
-      <height>81</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -3707,11 +3770,14 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_padding">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>790</y>
-      <width>71</width>
-      <height>28</height>
+      <x>780</x>
+      <y>710</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 12px;
@@ -3724,14 +3790,17 @@ border:3px solid black;</string>
    <widget class="QComboBox" name="cBox_padding_mode">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>790</y>
-      <width>191</width>
+      <x>870</x>
+      <y>710</y>
+      <width>161</width>
       <height>25</height>
      </rect>
     </property>
     <property name="mouseTracking">
      <bool>true</bool>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
     </property>
     <item>
      <property name="text">
@@ -3767,8 +3836,8 @@ border:3px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_padding_top">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>825</y>
+      <x>850</x>
+      <y>750</y>
       <width>41</width>
       <height>25</height>
      </rect>
@@ -3787,8 +3856,8 @@ border:1px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_padding_bottom">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>825</y>
+      <x>900</x>
+      <y>750</y>
       <width>41</width>
       <height>25</height>
      </rect>
@@ -3807,8 +3876,8 @@ border:1px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_padding_left">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>825</y>
+      <x>950</x>
+      <y>750</y>
       <width>41</width>
       <height>25</height>
      </rect>
@@ -3827,8 +3896,8 @@ border:1px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_padding_right">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>825</y>
+      <x>1000</x>
+      <y>750</y>
       <width>41</width>
       <height>25</height>
      </rect>
@@ -3847,8 +3916,8 @@ border:1px solid black;</string>
    <widget class="QLabel" name="label_paddling">
     <property name="geometry">
      <rect>
-      <x>405</x>
-      <y>825</y>
+      <x>785</x>
+      <y>750</y>
       <width>51</width>
       <height>25</height>
      </rect>
@@ -3866,6 +3935,846 @@ border:1px solid black;</string>
      <string>范围：</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pB_gray2color">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>650</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>灰度转彩色</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dilate_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>700</y>
+      <width>281</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_log">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>710</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>对数变换</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_log_C">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>710</y>
+      <width>71</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>对数C值:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_log_C">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>710</y>
+      <width>51</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>10</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_gamma">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>750</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>伽马变换</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_log_C_2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>750</y>
+      <width>71</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Gamma值:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_gamma">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>750</y>
+      <width>51</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>0.8</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="erode_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>600</y>
+      <width>281</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_filter">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>160</y>
+      <width>91</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>滤波核大小:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_filter_kernel_hight">
+    <property name="geometry">
+     <rect>
+      <x>1270</x>
+      <y>160</y>
+      <width>51</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>3</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_filter_kernel_width">
+    <property name="geometry">
+     <rect>
+      <x>1360</x>
+      <y>160</y>
+      <width>51</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>3</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="blur">
+    <property name="geometry">
+     <rect>
+      <x>1065</x>
+      <y>50</y>
+      <width>371</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_blur">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>160</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>均值滤波</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_X_3">
+    <property name="geometry">
+     <rect>
+      <x>1335</x>
+      <y>160</y>
+      <width>21</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>*</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_boxfilter">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>200</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>盒子滤波</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_gaussianblur">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>260</y>
+      <width>71</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>高斯滤波</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_gaussianblur">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>300</y>
+      <width>151</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>高斯标准差sigma:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_gaussianblur_sigma">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>300</y>
+      <width>51</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>1.0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_medianblur">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>200</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>中值滤波</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_bilateralfilter">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>60</y>
+      <width>71</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>双边滤波</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_bilateralfilter_d">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>60</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>双边滤波器直径：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_bilateralfilter_c">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>80</y>
+      <width>141</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>颜色空间标准差：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_bilateralfilter_p">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>105</y>
+      <width>141</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>坐标空间标准差：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_bilateralfilter_d">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>60</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>9</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_bilateralfilter_c">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>85</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>75</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_bilateralfilter_p">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>110</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>75</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_adaptivethreshold">
+    <property name="geometry">
+     <rect>
+      <x>1290</x>
+      <y>200</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>自适应阈值滤波</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="blur_2">
+    <property name="geometry">
+     <rect>
+      <x>1065</x>
+      <y>150</y>
+      <width>371</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="blur_3">
+    <property name="geometry">
+     <rect>
+      <x>1065</x>
+      <y>250</y>
+      <width>371</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_gaussianblur_kernel_hight">
+    <property name="geometry">
+     <rect>
+      <x>1270</x>
+      <y>260</y>
+      <width>51</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>3</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_X_4">
+    <property name="geometry">
+     <rect>
+      <x>1335</x>
+      <y>260</y>
+      <width>21</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>*</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_filter_2">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>260</y>
+      <width>91</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>滤波核大小:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_gaussianblur_kernel_width">
+    <property name="geometry">
+     <rect>
+      <x>1360</x>
+      <y>260</y>
+      <width>51</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>3</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="blur_4">
+    <property name="geometry">
+     <rect>
+      <x>1065</x>
+      <y>350</y>
+      <width>371</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pB_canny">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>360</y>
+      <width>71</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 12px;
+border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>Canny
+边缘检测</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_canny_threshold2">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>380</y>
+      <width>141</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>第二个阈值:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_canny_threshold2">
+    <property name="geometry">
+     <rect>
+      <x>1340</x>
+      <y>385</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>200</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_canny_apertureSize">
+    <property name="geometry">
+     <rect>
+      <x>1340</x>
+      <y>410</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>3</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_canny_apertureSize">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>405</y>
+      <width>161</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Sobel算子孔径大小:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_canny_threshold1">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>360</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>第一个阈值:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_canny_threshold1">
+    <property name="geometry">
+     <rect>
+      <x>1340</x>
+      <y>360</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+border:1px solid black;</string>
+    </property>
+    <property name="text">
+     <string>100</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>blur_2</zorder>
+   <zorder>blur_3</zorder>
+   <zorder>blur</zorder>
+   <zorder>erode_2</zorder>
    <zorder>flip_padding</zorder>
    <zorder>dilate</zorder>
    <zorder>erode</zorder>
@@ -3927,6 +4836,44 @@ border:1px solid black;</string>
    <zorder>lineEdit_padding_left</zorder>
    <zorder>lineEdit_padding_right</zorder>
    <zorder>label_paddling</zorder>
+   <zorder>pB_gray2color</zorder>
+   <zorder>dilate_2</zorder>
+   <zorder>pB_log</zorder>
+   <zorder>label_log_C</zorder>
+   <zorder>lineEdit_log_C</zorder>
+   <zorder>pB_gamma</zorder>
+   <zorder>label_log_C_2</zorder>
+   <zorder>lineEdit_gamma</zorder>
+   <zorder>label_filter</zorder>
+   <zorder>lineEdit_filter_kernel_hight</zorder>
+   <zorder>lineEdit_filter_kernel_width</zorder>
+   <zorder>pB_blur</zorder>
+   <zorder>label_X_3</zorder>
+   <zorder>pB_boxfilter</zorder>
+   <zorder>pB_gaussianblur</zorder>
+   <zorder>label_gaussianblur</zorder>
+   <zorder>lineEdit_gaussianblur_sigma</zorder>
+   <zorder>pB_medianblur</zorder>
+   <zorder>pB_bilateralfilter</zorder>
+   <zorder>label_bilateralfilter_d</zorder>
+   <zorder>label_bilateralfilter_c</zorder>
+   <zorder>label_bilateralfilter_p</zorder>
+   <zorder>lineEdit_bilateralfilter_d</zorder>
+   <zorder>lineEdit_bilateralfilter_c</zorder>
+   <zorder>lineEdit_bilateralfilter_p</zorder>
+   <zorder>pB_adaptivethreshold</zorder>
+   <zorder>lineEdit_gaussianblur_kernel_hight</zorder>
+   <zorder>label_X_4</zorder>
+   <zorder>label_filter_2</zorder>
+   <zorder>lineEdit_gaussianblur_kernel_width</zorder>
+   <zorder>blur_4</zorder>
+   <zorder>pB_canny</zorder>
+   <zorder>label_canny_threshold2</zorder>
+   <zorder>lineEdit_canny_threshold2</zorder>
+   <zorder>lineEdit_canny_apertureSize</zorder>
+   <zorder>label_canny_apertureSize</zorder>
+   <zorder>label_canny_threshold1</zorder>
+   <zorder>lineEdit_canny_threshold1</zorder>
   </widget>
  </widget>
  <resources>

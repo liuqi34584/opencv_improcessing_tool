@@ -36,7 +36,17 @@ enum mode_set {
     triangle,
     flip_horizontal,
     flip_vertical,
-    padding
+    padding,
+    gray2color,
+    log_turn,
+    gamma_turn,
+    blur_turn,
+    boxfilter,
+    gaussianblur,
+    medianblur,
+    bilateralfilter,
+    adaptivethreshold,
+    canny_turn
 };
 
 // 定义阈值相关参数结构体
@@ -44,6 +54,8 @@ struct ThreShold {
     uint8_t value = 150;
     uint8_t max = 255;
     uint8_t mode;
+    // computed threshold value if Otsu's or Triangle methods used
+    double computed = 0;
 };
 
 // 定义resize相关参数结构体
@@ -76,6 +88,54 @@ struct Padding {
     int bordermode = 0;
 };
 
+// 定义对数变换相关参数结构体
+struct Log {
+    int C = 0;  // 定义对数变换的值
+};
+
+// 定义伽马变换相关参数结构体
+struct Gamma {
+    double value = 0;  // 定义对数变换的值
+};
+
+// 定义 滤波 相关参数结构体
+struct Blur {
+    int kernel_hight = 3;
+    int kernel_width = 3;
+};
+
+// 定义 盒子滤波 相关参数结构体
+struct Boxfilter {
+    int kernel_hight = 3;
+    int kernel_width = 3;
+};
+
+// 定义 高斯滤波 相关参数结构体
+struct Gaussianblur {
+    int kernel_hight = 3;
+    int kernel_width = 3;
+    float sigma = 1.0;
+};
+
+// 定义 中值滤波 相关参数结构体
+struct Medianblur {
+    int kernel_hight = 3;
+    int kernel_width = 3;
+};
+
+// 定义 双边滤波 相关参数结构体
+struct Bilateralfilter {
+    int diameter = 9;       // 双边滤波器直径
+    double sigmaColor = 75; // 颜色空间的标准差
+    double sigmaSpace = 75; // 坐标空间的标准差
+};
+
+// 定义 canny边缘检测 相关参数结构体
+struct Canny {
+    double threshold1 = 100;  // 第一个阈值
+    double threshold2 = 200;  // 第二个阈值
+    int apertureSize = 3;     // Sobel算子的孔径大小
+};
 
 struct im_state {
     cv::Mat img;
@@ -92,6 +152,14 @@ struct im_state {
     Erode erode;
     Dilate dilate;
     Padding padding;
+    Log log;
+    Gamma gamma;
+    Blur blur;
+    Boxfilter boxfilter;
+    Gaussianblur gaussianblur;
+    Medianblur medianblur;
+    Bilateralfilter bilateralfilter;
+    Canny canny;
 };
 extern im_state image_state;
 
@@ -104,6 +172,7 @@ extern cv::String make_savename(cv::String str);
 extern std::string zfill(std::string str, size_t width);
 extern void find_num(std::string str, std::string& str_head, int& number, int& number_width, std::string& str_end);
 extern bool isReasonablefile(cv::String filename);
+extern int makeOdd(int num);
 
 #endif // OTHERS_H
 

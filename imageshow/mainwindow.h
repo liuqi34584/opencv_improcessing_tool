@@ -76,7 +76,27 @@ private slots:
 
     void on_pB_flip_vertical_clicked();
 
+    void on_pB_gray2color_clicked();
+
     void on_pB_padding_clicked();
+
+    void on_pB_log_clicked();
+
+    void on_pB_gamma_clicked();
+
+    void on_pB_blur_clicked();
+
+    void on_pB_boxfilter_clicked();
+
+    void on_pB_gaussianblur_clicked();
+
+    void on_pB_medianblur_clicked();
+
+    void on_pB_bilateralfilter_clicked();
+
+    void on_pB_adaptivethreshold_clicked();
+
+    void on_pB_canny_clicked();
 
 private:
     Ui::MainWindow *ui;
