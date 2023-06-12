@@ -1356,13 +1356,13 @@ public:
         label_RotationMatrix2D_3->setStyleSheet(QString::fromUtf8(""));
         pB_RotationMatrix2D = new QPushButton(centralwidget);
         pB_RotationMatrix2D->setObjectName(QString::fromUtf8("pB_RotationMatrix2D"));
-        pB_RotationMatrix2D->setGeometry(QRect(1075, 560, 71, 71));
+        pB_RotationMatrix2D->setGeometry(QRect(1070, 560, 71, 71));
         pB_RotationMatrix2D->setMouseTracking(true);
         pB_RotationMatrix2D->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
 "border:3px solid black;"));
         blur_6 = new QLabel(centralwidget);
         blur_6->setObjectName(QString::fromUtf8("blur_6"));
-        blur_6->setGeometry(QRect(1070, 550, 371, 91));
+        blur_6->setGeometry(QRect(1065, 550, 371, 91));
         blur_6->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
 "border:3px solid black;"));
         lineEdit_RotationMatrix2D_angle = new QLineEdit(centralwidget);
@@ -1447,9 +1447,9 @@ public:
         label_RotationMatrix2D_4->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
         textEdit = new QTextEdit(centralwidget);
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(1070, 660, 361, 131));
-        textEdit->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
-"border:3px solid black;"));
+        textEdit->setGeometry(QRect(1065, 650, 371, 141));
+        textEdit->setStyleSheet(QString::fromUtf8("border-radius: 2px;\n"
+"border:2px solid black;"));
         textEdit->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
         MainWindow->setCentralWidget(centralwidget);
         blur_6->raise();

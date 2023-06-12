@@ -4958,7 +4958,7 @@ border:1px solid black;</string>
    <widget class="QPushButton" name="pB_RotationMatrix2D">
     <property name="geometry">
      <rect>
-      <x>1075</x>
+      <x>1070</x>
       <y>560</y>
       <width>71</width>
       <height>71</height>
@@ -4978,7 +4978,7 @@ border:3px solid black;</string>
    <widget class="QLabel" name="blur_6">
     <property name="geometry">
      <rect>
-      <x>1070</x>
+      <x>1065</x>
       <y>550</y>
       <width>371</width>
       <height>91</height>
@@ -5283,15 +5283,15 @@ border:3px solid black;</string>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>1070</x>
-      <y>660</y>
-      <width>361</width>
-      <height>131</height>
+      <x>1065</x>
+      <y>650</y>
+      <width>371</width>
+      <height>141</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-radius: 12px;
-border:3px solid black;</string>
+     <string notr="true">border-radius: 2px;
+border:2px solid black;</string>
     </property>
     <property name="html">
      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
