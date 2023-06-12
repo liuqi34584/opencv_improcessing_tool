@@ -3297,7 +3297,7 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_erode">
     <property name="geometry">
      <rect>
-      <x>685</x>
+      <x>690</x>
       <y>510</y>
       <width>71</width>
       <height>71</height>
@@ -3585,7 +3585,7 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_dilate">
     <property name="geometry">
      <rect>
-      <x>685</x>
+      <x>690</x>
       <y>610</y>
       <width>71</width>
       <height>71</height>
@@ -4195,7 +4195,7 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_blur">
     <property name="geometry">
      <rect>
-      <x>1070</x>
+      <x>1075</x>
       <y>160</y>
       <width>71</width>
       <height>31</height>
@@ -4236,7 +4236,7 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_boxfilter">
     <property name="geometry">
      <rect>
-      <x>1070</x>
+      <x>1075</x>
       <y>200</y>
       <width>71</width>
       <height>31</height>
@@ -4256,7 +4256,7 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_gaussianblur">
     <property name="geometry">
      <rect>
-      <x>1070</x>
+      <x>1075</x>
       <y>260</y>
       <width>71</width>
       <height>71</height>
@@ -4337,7 +4337,7 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_bilateralfilter">
     <property name="geometry">
      <rect>
-      <x>1070</x>
+      <x>1075</x>
       <y>60</y>
       <width>71</width>
       <height>71</height>
@@ -4633,7 +4633,7 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_canny">
     <property name="geometry">
      <rect>
-      <x>1070</x>
+      <x>1075</x>
       <y>360</y>
       <width>71</width>
       <height>71</height>
@@ -4815,7 +4815,7 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="pB_brightened">
     <property name="geometry">
      <rect>
-      <x>1070</x>
+      <x>1075</x>
       <y>460</y>
       <width>71</width>
       <height>71</height>
@@ -4958,7 +4958,7 @@ border:1px solid black;</string>
    <widget class="QPushButton" name="pB_RotationMatrix2D">
     <property name="geometry">
      <rect>
-      <x>1070</x>
+      <x>1075</x>
       <y>560</y>
       <width>71</width>
       <height>71</height>
