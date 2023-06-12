@@ -46,7 +46,9 @@ enum mode_set {
     medianblur,
     bilateralfilter,
     adaptivethreshold,
-    canny_turn
+    canny_turn,
+    brightened_turn,
+    rotationMatrix2d_turn
 };
 
 // 定义阈值相关参数结构体
@@ -69,6 +71,7 @@ struct Resize {
 struct Erode {
     int kernel_hight = 3;
     int kernel_width = 3;
+    int iterations = 1;
     uint8_t StructuringElement;
 };
 
@@ -76,6 +79,7 @@ struct Erode {
 struct Dilate {
     int kernel_hight = 3;
     int kernel_width = 3;
+    int iterations = 1;
     int StructuringElement;
 };
 
@@ -137,6 +141,18 @@ struct Canny {
     int apertureSize = 3;     // Sobel算子的孔径大小
 };
 
+// 定义 亮度调整 相关参数结构体
+struct Brightened {
+    float alpha = 1.0;
+};
+
+struct RotationMatrix2d {
+    int center_cols = 0;
+    int center_rows = 0;
+    double angle = 0;
+    double scale = 1.0;
+};
+
 struct im_state {
     cv::Mat img;
     cv::Mat new_img;    // 全局CV图像mat
@@ -160,7 +176,11 @@ struct im_state {
     Medianblur medianblur;
     Bilateralfilter bilateralfilter;
     Canny canny;
+    Brightened brightened;
+    RotationMatrix2d rotationMatrix2d;
 };
+
+
 extern im_state image_state;
 
 extern QImage Mat2QImage(const cv::Mat& mat);
@@ -168,6 +188,7 @@ extern void Qimshow(QLabel *label, QImage Qimg);
 extern void Qimclear(QLabel *label);
 extern QVector<QString> get_directory_list(QString path);
 extern cv::Mat Image_mode(cv::Mat mat, uint8_t mode);
+extern cv::Mat Image_Image_mode(cv::Mat mat1, cv::Mat mat2, uint8_t mode);
 extern cv::String make_savename(cv::String str);
 extern std::string zfill(std::string str, size_t width);
 extern void find_num(std::string str, std::string& str_head, int& number, int& number_width, std::string& str_end);

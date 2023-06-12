@@ -96,7 +96,12 @@ private slots:
 
     void on_pB_adaptivethreshold_clicked();
 
+    void on_pB_brightened_clicked();
+
     void on_pB_canny_clicked();
+    void on_pB_RotationMatrix2D_clicked();
+
+
 
 private:
     Ui::MainWindow *ui;

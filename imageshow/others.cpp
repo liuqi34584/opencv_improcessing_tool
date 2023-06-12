@@ -224,17 +224,17 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
             case 1:
             cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
             cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
-            cv::erode(gray_mat, erode_mat, kernel);
+            cv::erode(gray_mat, erode_mat, kernel, cv::Point(-1,-1), image_state.erode.iterations);
             break;
 
             case 3:
             cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
-            cv::erode(gray_mat, erode_mat, kernel);
+            cv::erode(gray_mat, erode_mat, kernel, cv::Point(-1,-1), image_state.erode.iterations);
             break;
 
             case 4:
             cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
-            cv::erode(gray_mat, erode_mat, kernel);
+            cv::erode(gray_mat, erode_mat, kernel, cv::Point(-1,-1), image_state.erode.iterations);
             break;
         }
 
@@ -255,17 +255,17 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
             case 1:
             cv::cvtColor(mat, bgr_mat, cv::COLOR_GRAY2BGR);
             cv::cvtColor(bgr_mat, gray_mat, cv::COLOR_BGR2GRAY);
-            cv::dilate(gray_mat, dilate_mat, kernel);
+            cv::dilate(gray_mat, dilate_mat, kernel, cv::Point(-1,-1), image_state.dilate.iterations);
             break;
 
             case 3:
             cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
-            cv::dilate(gray_mat, dilate_mat, kernel);
+            cv::dilate(gray_mat, dilate_mat, kernel, cv::Point(-1,-1), image_state.dilate.iterations);
             break;
 
             case 4:
             cv::cvtColor(mat, gray_mat, cv::COLOR_BGRA2GRAY);
-            cv::dilate(gray_mat, dilate_mat, kernel);
+            cv::dilate(gray_mat, dilate_mat, kernel, cv::Point(-1,-1), image_state.dilate.iterations);
             break;
         }
 
@@ -782,6 +782,31 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
         }
 
         return canny_mat;
+    }
+    if(mode == mode_set::brightened_turn)  // brightened亮度调节
+    {
+        cv::Mat brightened_mat;
+
+        mat.convertTo(brightened_mat, -1, image_state.brightened.alpha, 0);
+
+        return brightened_mat;
+    }
+
+    if(mode == mode_set::rotationMatrix2d_turn)  // 旋转仿射变换
+    {
+        cv::Mat transformMatrix, rotationMatrix2d_mat;
+
+
+        // 定义仿射变换矩阵
+        transformMatrix = cv::getRotationMatrix2D(\
+                            cv::Point2f(image_state.rotationMatrix2d.center_cols, \
+                                        image_state.rotationMatrix2d.center_rows), \
+                            image_state.rotationMatrix2d.angle, \
+                            image_state.rotationMatrix2d.scale);
+
+        cv::warpAffine(mat, rotationMatrix2d_mat, transformMatrix, mat.size());
+
+        return rotationMatrix2d_mat;
     }
 
     return mat; //默认返回值

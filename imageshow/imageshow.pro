@@ -36,6 +36,8 @@ LIBS  +=-L D:\appdata\opencv\rebuild_for_qt\install\x64\mingw\lib\libopencv_*.dl
 RESOURCES += \
     images.qrc
 
+RC_FILE = res.rc
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

@@ -1,8 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>icons/icon.png</file>
-        <file>icons/loadfaild.png</file>
-        <file>icons/smile.png</file>
-        <file>icons/icon.ico</file>
+        <file>icons/opencv.ico</file>
     </qresource>
 </RCC>

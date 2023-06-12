@@ -17,6 +17,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -128,22 +129,48 @@ public:
     QLabel *label_canny_apertureSize;
     QLabel *label_canny_threshold1;
     QLineEdit *lineEdit_canny_threshold1;
+    QLabel *blur_5;
+    QLabel *label_brightened;
+    QPushButton *pB_brightened;
+    QLineEdit *lineEdit_brightened;
+    QLabel *label_erode_iter;
+    QLineEdit *lineEdit_erode_iters;
+    QLabel *label_dilate_iter;
+    QLineEdit *lineEdit_dilate_iters;
+    QLabel *label_RotationMatrix2D_3;
+    QPushButton *pB_RotationMatrix2D;
+    QLabel *blur_6;
+    QLineEdit *lineEdit_RotationMatrix2D_angle;
+    QLabel *label_RotationMatrix2D_2;
+    QLabel *label_RotationMatrix2D_1;
+    QLineEdit *lineEdit_RotationMatrix2D_rows;
+    QLineEdit *lineEdit_RotationMatrix2D_cols;
+    QLineEdit *lineEdit_RotationMatrix2D_scale;
+    QLineEdit *lineEdit_gamma_2;
+    QLineEdit *lineEdit_log_C_2;
+    QPushButton *pB_brightened_2;
+    QPushButton *pB_gamma_2;
+    QPushButton *pB_log_2;
+    QLabel *label_log_C_3;
+    QLabel *label_log_C_4;
+    QLabel *label_RotationMatrix2D_4;
+    QTextEdit *textEdit;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1500, 800);
+        MainWindow->resize(1450, 800);
         MainWindow->setMinimumSize(QSize(860, 400));
         MainWindow->setMaximumSize(QSize(2000, 2000));
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/icons/icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8("icons/opencv.ico"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         pB_dir_load = new QPushButton(centralwidget);
         pB_dir_load->setObjectName(QString::fromUtf8("pB_dir_load"));
-        pB_dir_load->setGeometry(QRect(20, 510, 61, 71));
+        pB_dir_load->setGeometry(QRect(20, 510, 71, 71));
         pB_dir_load->setMouseTracking(true);
         pB_dir_load->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
 "border:3px solid black;"));
@@ -160,6 +187,7 @@ public:
         newimage->setFrameShadow(QFrame::Plain);
         newimage->setLineWidth(0);
         newimage->setAlignment(Qt::AlignCenter);
+        newimage->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
         pushButton_twovalue = new QPushButton(centralwidget);
         pushButton_twovalue->setObjectName(QString::fromUtf8("pushButton_twovalue"));
         pushButton_twovalue->setGeometry(QRect(480, 710, 81, 31));
@@ -730,7 +758,7 @@ public:
 "border:3px solid black;"));
         pB_dir_save = new QPushButton(centralwidget);
         pB_dir_save->setObjectName(QString::fromUtf8("pB_dir_save"));
-        pB_dir_save->setGeometry(QRect(90, 510, 181, 31));
+        pB_dir_save->setGeometry(QRect(100, 510, 171, 31));
         pB_dir_save->setMouseTracking(true);
         pB_dir_save->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
 "border:3px solid black;"));
@@ -829,7 +857,7 @@ public:
 "border:3px solid black;"));
         lineEdit_dir_filename = new QLineEdit(centralwidget);
         lineEdit_dir_filename->setObjectName(QString::fromUtf8("lineEdit_dir_filename"));
-        lineEdit_dir_filename->setGeometry(QRect(90, 550, 181, 31));
+        lineEdit_dir_filename->setGeometry(QRect(100, 550, 171, 31));
         lineEdit_dir_filename->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_dir_filename->setAlignment(Qt::AlignCenter);
@@ -855,7 +883,7 @@ public:
         label_print_text->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
         pB_turn_channels_there = new QPushButton(centralwidget);
         pB_turn_channels_there->setObjectName(QString::fromUtf8("pB_turn_channels_there"));
-        pB_turn_channels_there->setGeometry(QRect(20, 650, 125, 31));
+        pB_turn_channels_there->setGeometry(QRect(150, 710, 125, 31));
         pB_turn_channels_there->setMouseTracking(true);
         pB_turn_channels_there->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
 "border:3px solid black;"));
@@ -870,32 +898,32 @@ public:
         cBox_erode_Structuring->addItem(QString());
         cBox_erode_Structuring->addItem(QString());
         cBox_erode_Structuring->setObjectName(QString::fromUtf8("cBox_erode_Structuring"));
-        cBox_erode_Structuring->setGeometry(QRect(780, 550, 241, 27));
+        cBox_erode_Structuring->setGeometry(QRect(770, 550, 271, 27));
         cBox_erode_Structuring->setMouseTracking(true);
         cBox_erode_Structuring->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         label_erode_size = new QLabel(centralwidget);
         label_erode_size->setObjectName(QString::fromUtf8("label_erode_size"));
-        label_erode_size->setGeometry(QRect(780, 510, 61, 30));
+        label_erode_size->setGeometry(QRect(765, 510, 61, 30));
         QFont font2;
         font2.setPointSize(10);
         label_erode_size->setFont(font2);
         label_erode_size->setStyleSheet(QString::fromUtf8(""));
         lineEdit_erode_kernel_hight = new QLineEdit(centralwidget);
         lineEdit_erode_kernel_hight->setObjectName(QString::fromUtf8("lineEdit_erode_kernel_hight"));
-        lineEdit_erode_kernel_hight->setGeometry(QRect(850, 510, 41, 28));
+        lineEdit_erode_kernel_hight->setGeometry(QRect(830, 512, 41, 25));
         lineEdit_erode_kernel_hight->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_erode_kernel_hight->setAlignment(Qt::AlignCenter);
         lineEdit_erode_kernel_width = new QLineEdit(centralwidget);
         lineEdit_erode_kernel_width->setObjectName(QString::fromUtf8("lineEdit_erode_kernel_width"));
-        lineEdit_erode_kernel_width->setGeometry(QRect(920, 510, 41, 28));
+        lineEdit_erode_kernel_width->setGeometry(QRect(890, 512, 41, 25));
         lineEdit_erode_kernel_width->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_erode_kernel_width->setAlignment(Qt::AlignCenter);
         label_X = new QLabel(centralwidget);
         label_X->setObjectName(QString::fromUtf8("label_X"));
-        label_X->setGeometry(QRect(900, 510, 21, 25));
+        label_X->setGeometry(QRect(875, 512, 21, 25));
         label_X->setFont(font1);
         label_X->setStyleSheet(QString::fromUtf8(""));
         erode = new QLabel(centralwidget);
@@ -905,24 +933,24 @@ public:
 "border:3px solid black;"));
         label_dilate_size = new QLabel(centralwidget);
         label_dilate_size->setObjectName(QString::fromUtf8("label_dilate_size"));
-        label_dilate_size->setGeometry(QRect(780, 610, 61, 30));
+        label_dilate_size->setGeometry(QRect(765, 608, 61, 30));
         label_dilate_size->setFont(font2);
         label_dilate_size->setStyleSheet(QString::fromUtf8(""));
         lineEdit_dilate_kernel_width = new QLineEdit(centralwidget);
         lineEdit_dilate_kernel_width->setObjectName(QString::fromUtf8("lineEdit_dilate_kernel_width"));
-        lineEdit_dilate_kernel_width->setGeometry(QRect(920, 610, 41, 28));
+        lineEdit_dilate_kernel_width->setGeometry(QRect(890, 610, 41, 25));
         lineEdit_dilate_kernel_width->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_dilate_kernel_width->setAlignment(Qt::AlignCenter);
         lineEdit_dilate_kernel_hight = new QLineEdit(centralwidget);
         lineEdit_dilate_kernel_hight->setObjectName(QString::fromUtf8("lineEdit_dilate_kernel_hight"));
-        lineEdit_dilate_kernel_hight->setGeometry(QRect(850, 610, 41, 28));
+        lineEdit_dilate_kernel_hight->setGeometry(QRect(830, 610, 41, 25));
         lineEdit_dilate_kernel_hight->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_dilate_kernel_hight->setAlignment(Qt::AlignCenter);
         label_X_2 = new QLabel(centralwidget);
         label_X_2->setObjectName(QString::fromUtf8("label_X_2"));
-        label_X_2->setGeometry(QRect(900, 610, 21, 25));
+        label_X_2->setGeometry(QRect(875, 610, 21, 25));
         label_X_2->setFont(font1);
         label_X_2->setStyleSheet(QString::fromUtf8(""));
         cBox_dilate_Structuring = new QComboBox(centralwidget);
@@ -930,7 +958,7 @@ public:
         cBox_dilate_Structuring->addItem(QString());
         cBox_dilate_Structuring->addItem(QString());
         cBox_dilate_Structuring->setObjectName(QString::fromUtf8("cBox_dilate_Structuring"));
-        cBox_dilate_Structuring->setGeometry(QRect(780, 650, 241, 27));
+        cBox_dilate_Structuring->setGeometry(QRect(770, 650, 271, 27));
         cBox_dilate_Structuring->setMouseTracking(true);
         cBox_dilate_Structuring->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
@@ -947,22 +975,22 @@ public:
 "border:3px solid black;"));
         pB_turn_channels_b = new QPushButton(centralwidget);
         pB_turn_channels_b->setObjectName(QString::fromUtf8("pB_turn_channels_b"));
-        pB_turn_channels_b->setGeometry(QRect(160, 650, 31, 31));
+        pB_turn_channels_b->setGeometry(QRect(150, 750, 31, 31));
         pB_turn_channels_b->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
 "border:3px solid black;"));
         pB_turn_channels_g = new QPushButton(centralwidget);
         pB_turn_channels_g->setObjectName(QString::fromUtf8("pB_turn_channels_g"));
-        pB_turn_channels_g->setGeometry(QRect(200, 650, 31, 31));
+        pB_turn_channels_g->setGeometry(QRect(190, 750, 31, 31));
         pB_turn_channels_g->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
 "border:3px solid black;"));
         pB_turn_channels_r = new QPushButton(centralwidget);
         pB_turn_channels_r->setObjectName(QString::fromUtf8("pB_turn_channels_r"));
-        pB_turn_channels_r->setGeometry(QRect(240, 650, 31, 31));
+        pB_turn_channels_r->setGeometry(QRect(240, 750, 31, 31));
         pB_turn_channels_r->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
 "border:3px solid black;"));
         pB_equalizehist = new QPushButton(centralwidget);
         pB_equalizehist->setObjectName(QString::fromUtf8("pB_equalizehist"));
-        pB_equalizehist->setGeometry(QRect(1070, 610, 131, 31));
+        pB_equalizehist->setGeometry(QRect(20, 710, 121, 31));
         pB_equalizehist->setMouseTracking(true);
         pB_equalizehist->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
 "border:3px solid black;"));
@@ -1046,7 +1074,7 @@ public:
         label_paddling->setStyleSheet(QString::fromUtf8(""));
         pB_gray2color = new QPushButton(centralwidget);
         pB_gray2color->setObjectName(QString::fromUtf8("pB_gray2color"));
-        pB_gray2color->setGeometry(QRect(1070, 650, 131, 31));
+        pB_gray2color->setGeometry(QRect(20, 750, 121, 31));
         pB_gray2color->setMouseTracking(true);
         pB_gray2color->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
 "border:3px solid black;"));
@@ -1057,35 +1085,35 @@ public:
 "border:3px solid black;"));
         pB_log = new QPushButton(centralwidget);
         pB_log->setObjectName(QString::fromUtf8("pB_log"));
-        pB_log->setGeometry(QRect(20, 710, 121, 31));
+        pB_log->setGeometry(QRect(1340, 500, 81, 31));
         pB_log->setMouseTracking(true);
         pB_log->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
 "border:3px solid black;"));
         label_log_C = new QLabel(centralwidget);
         label_log_C->setObjectName(QString::fromUtf8("label_log_C"));
-        label_log_C->setGeometry(QRect(150, 710, 71, 28));
+        label_log_C->setGeometry(QRect(1170, 510, 71, 20));
         label_log_C->setFont(font2);
         label_log_C->setStyleSheet(QString::fromUtf8(""));
         lineEdit_log_C = new QLineEdit(centralwidget);
         lineEdit_log_C->setObjectName(QString::fromUtf8("lineEdit_log_C"));
-        lineEdit_log_C->setGeometry(QRect(220, 710, 51, 28));
+        lineEdit_log_C->setGeometry(QRect(1260, 510, 51, 20));
         lineEdit_log_C->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_log_C->setAlignment(Qt::AlignCenter);
         pB_gamma = new QPushButton(centralwidget);
         pB_gamma->setObjectName(QString::fromUtf8("pB_gamma"));
-        pB_gamma->setGeometry(QRect(20, 750, 121, 31));
+        pB_gamma->setGeometry(QRect(1340, 460, 81, 31));
         pB_gamma->setMouseTracking(true);
         pB_gamma->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
 "border:3px solid black;"));
         label_log_C_2 = new QLabel(centralwidget);
         label_log_C_2->setObjectName(QString::fromUtf8("label_log_C_2"));
-        label_log_C_2->setGeometry(QRect(150, 750, 71, 28));
+        label_log_C_2->setGeometry(QRect(1170, 485, 71, 20));
         label_log_C_2->setFont(font2);
         label_log_C_2->setStyleSheet(QString::fromUtf8(""));
         lineEdit_gamma = new QLineEdit(centralwidget);
         lineEdit_gamma->setObjectName(QString::fromUtf8("lineEdit_gamma"));
-        lineEdit_gamma->setGeometry(QRect(220, 750, 51, 28));
+        lineEdit_gamma->setGeometry(QRect(1260, 485, 51, 20));
         lineEdit_gamma->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_gamma->setAlignment(Qt::AlignCenter);
@@ -1101,13 +1129,13 @@ public:
         label_filter->setStyleSheet(QString::fromUtf8(""));
         lineEdit_filter_kernel_hight = new QLineEdit(centralwidget);
         lineEdit_filter_kernel_hight->setObjectName(QString::fromUtf8("lineEdit_filter_kernel_hight"));
-        lineEdit_filter_kernel_hight->setGeometry(QRect(1270, 160, 51, 28));
+        lineEdit_filter_kernel_hight->setGeometry(QRect(1280, 160, 51, 28));
         lineEdit_filter_kernel_hight->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_filter_kernel_hight->setAlignment(Qt::AlignCenter);
         lineEdit_filter_kernel_width = new QLineEdit(centralwidget);
         lineEdit_filter_kernel_width->setObjectName(QString::fromUtf8("lineEdit_filter_kernel_width"));
-        lineEdit_filter_kernel_width->setGeometry(QRect(1360, 160, 51, 28));
+        lineEdit_filter_kernel_width->setGeometry(QRect(1370, 160, 51, 28));
         lineEdit_filter_kernel_width->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_filter_kernel_width->setAlignment(Qt::AlignCenter);
@@ -1124,7 +1152,7 @@ public:
 "border:3px solid black;"));
         label_X_3 = new QLabel(centralwidget);
         label_X_3->setObjectName(QString::fromUtf8("label_X_3"));
-        label_X_3->setGeometry(QRect(1335, 160, 21, 25));
+        label_X_3->setGeometry(QRect(1345, 160, 21, 25));
         label_X_3->setFont(font1);
         label_X_3->setStyleSheet(QString::fromUtf8(""));
         pB_boxfilter = new QPushButton(centralwidget);
@@ -1146,7 +1174,7 @@ public:
         label_gaussianblur->setStyleSheet(QString::fromUtf8(""));
         lineEdit_gaussianblur_sigma = new QLineEdit(centralwidget);
         lineEdit_gaussianblur_sigma->setObjectName(QString::fromUtf8("lineEdit_gaussianblur_sigma"));
-        lineEdit_gaussianblur_sigma->setGeometry(QRect(1330, 300, 51, 28));
+        lineEdit_gaussianblur_sigma->setGeometry(QRect(1370, 300, 51, 28));
         lineEdit_gaussianblur_sigma->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_gaussianblur_sigma->setAlignment(Qt::AlignCenter);
@@ -1179,19 +1207,19 @@ public:
         label_bilateralfilter_p->setStyleSheet(QString::fromUtf8(""));
         lineEdit_bilateralfilter_d = new QLineEdit(centralwidget);
         lineEdit_bilateralfilter_d->setObjectName(QString::fromUtf8("lineEdit_bilateralfilter_d"));
-        lineEdit_bilateralfilter_d->setGeometry(QRect(1300, 60, 51, 20));
+        lineEdit_bilateralfilter_d->setGeometry(QRect(1370, 60, 51, 20));
         lineEdit_bilateralfilter_d->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_bilateralfilter_d->setAlignment(Qt::AlignCenter);
         lineEdit_bilateralfilter_c = new QLineEdit(centralwidget);
         lineEdit_bilateralfilter_c->setObjectName(QString::fromUtf8("lineEdit_bilateralfilter_c"));
-        lineEdit_bilateralfilter_c->setGeometry(QRect(1300, 85, 51, 20));
+        lineEdit_bilateralfilter_c->setGeometry(QRect(1370, 85, 51, 20));
         lineEdit_bilateralfilter_c->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_bilateralfilter_c->setAlignment(Qt::AlignCenter);
         lineEdit_bilateralfilter_p = new QLineEdit(centralwidget);
         lineEdit_bilateralfilter_p->setObjectName(QString::fromUtf8("lineEdit_bilateralfilter_p"));
-        lineEdit_bilateralfilter_p->setGeometry(QRect(1300, 110, 51, 20));
+        lineEdit_bilateralfilter_p->setGeometry(QRect(1370, 110, 51, 20));
         lineEdit_bilateralfilter_p->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_bilateralfilter_p->setAlignment(Qt::AlignCenter);
@@ -1213,13 +1241,13 @@ public:
 "border:3px solid black;"));
         lineEdit_gaussianblur_kernel_hight = new QLineEdit(centralwidget);
         lineEdit_gaussianblur_kernel_hight->setObjectName(QString::fromUtf8("lineEdit_gaussianblur_kernel_hight"));
-        lineEdit_gaussianblur_kernel_hight->setGeometry(QRect(1270, 260, 51, 28));
+        lineEdit_gaussianblur_kernel_hight->setGeometry(QRect(1280, 260, 51, 28));
         lineEdit_gaussianblur_kernel_hight->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_gaussianblur_kernel_hight->setAlignment(Qt::AlignCenter);
         label_X_4 = new QLabel(centralwidget);
         label_X_4->setObjectName(QString::fromUtf8("label_X_4"));
-        label_X_4->setGeometry(QRect(1335, 260, 21, 25));
+        label_X_4->setGeometry(QRect(1345, 260, 21, 25));
         label_X_4->setFont(font1);
         label_X_4->setStyleSheet(QString::fromUtf8(""));
         label_filter_2 = new QLabel(centralwidget);
@@ -1229,7 +1257,7 @@ public:
         label_filter_2->setStyleSheet(QString::fromUtf8(""));
         lineEdit_gaussianblur_kernel_width = new QLineEdit(centralwidget);
         lineEdit_gaussianblur_kernel_width->setObjectName(QString::fromUtf8("lineEdit_gaussianblur_kernel_width"));
-        lineEdit_gaussianblur_kernel_width->setGeometry(QRect(1360, 260, 51, 28));
+        lineEdit_gaussianblur_kernel_width->setGeometry(QRect(1370, 260, 51, 28));
         lineEdit_gaussianblur_kernel_width->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_gaussianblur_kernel_width->setAlignment(Qt::AlignCenter);
@@ -1251,13 +1279,13 @@ public:
         label_canny_threshold2->setStyleSheet(QString::fromUtf8(""));
         lineEdit_canny_threshold2 = new QLineEdit(centralwidget);
         lineEdit_canny_threshold2->setObjectName(QString::fromUtf8("lineEdit_canny_threshold2"));
-        lineEdit_canny_threshold2->setGeometry(QRect(1340, 385, 51, 20));
+        lineEdit_canny_threshold2->setGeometry(QRect(1370, 385, 51, 20));
         lineEdit_canny_threshold2->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_canny_threshold2->setAlignment(Qt::AlignCenter);
         lineEdit_canny_apertureSize = new QLineEdit(centralwidget);
         lineEdit_canny_apertureSize->setObjectName(QString::fromUtf8("lineEdit_canny_apertureSize"));
-        lineEdit_canny_apertureSize->setGeometry(QRect(1340, 410, 51, 20));
+        lineEdit_canny_apertureSize->setGeometry(QRect(1370, 410, 51, 20));
         lineEdit_canny_apertureSize->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_canny_apertureSize->setAlignment(Qt::AlignCenter);
@@ -1273,11 +1301,159 @@ public:
         label_canny_threshold1->setStyleSheet(QString::fromUtf8(""));
         lineEdit_canny_threshold1 = new QLineEdit(centralwidget);
         lineEdit_canny_threshold1->setObjectName(QString::fromUtf8("lineEdit_canny_threshold1"));
-        lineEdit_canny_threshold1->setGeometry(QRect(1340, 360, 51, 20));
+        lineEdit_canny_threshold1->setGeometry(QRect(1370, 360, 51, 20));
         lineEdit_canny_threshold1->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
 "border:1px solid black;"));
         lineEdit_canny_threshold1->setAlignment(Qt::AlignCenter);
+        blur_5 = new QLabel(centralwidget);
+        blur_5->setObjectName(QString::fromUtf8("blur_5"));
+        blur_5->setGeometry(QRect(1065, 450, 371, 91));
+        blur_5->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
+"border:3px solid black;"));
+        label_brightened = new QLabel(centralwidget);
+        label_brightened->setObjectName(QString::fromUtf8("label_brightened"));
+        label_brightened->setGeometry(QRect(1170, 460, 91, 20));
+        label_brightened->setFont(font2);
+        label_brightened->setStyleSheet(QString::fromUtf8(""));
+        pB_brightened = new QPushButton(centralwidget);
+        pB_brightened->setObjectName(QString::fromUtf8("pB_brightened"));
+        pB_brightened->setGeometry(QRect(1070, 460, 71, 71));
+        pB_brightened->setMouseTracking(true);
+        pB_brightened->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
+"border:3px solid black;"));
+        lineEdit_brightened = new QLineEdit(centralwidget);
+        lineEdit_brightened->setObjectName(QString::fromUtf8("lineEdit_brightened"));
+        lineEdit_brightened->setGeometry(QRect(1260, 460, 51, 20));
+        lineEdit_brightened->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
+"border:1px solid black;"));
+        lineEdit_brightened->setAlignment(Qt::AlignCenter);
+        label_erode_iter = new QLabel(centralwidget);
+        label_erode_iter->setObjectName(QString::fromUtf8("label_erode_iter"));
+        label_erode_iter->setGeometry(QRect(935, 510, 61, 30));
+        label_erode_iter->setFont(font2);
+        label_erode_iter->setStyleSheet(QString::fromUtf8(""));
+        lineEdit_erode_iters = new QLineEdit(centralwidget);
+        lineEdit_erode_iters->setObjectName(QString::fromUtf8("lineEdit_erode_iters"));
+        lineEdit_erode_iters->setGeometry(QRect(1000, 512, 41, 25));
+        lineEdit_erode_iters->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
+"border:1px solid black;"));
+        lineEdit_erode_iters->setAlignment(Qt::AlignCenter);
+        label_dilate_iter = new QLabel(centralwidget);
+        label_dilate_iter->setObjectName(QString::fromUtf8("label_dilate_iter"));
+        label_dilate_iter->setGeometry(QRect(938, 610, 61, 30));
+        label_dilate_iter->setFont(font2);
+        label_dilate_iter->setStyleSheet(QString::fromUtf8(""));
+        lineEdit_dilate_iters = new QLineEdit(centralwidget);
+        lineEdit_dilate_iters->setObjectName(QString::fromUtf8("lineEdit_dilate_iters"));
+        lineEdit_dilate_iters->setGeometry(QRect(1000, 610, 41, 25));
+        lineEdit_dilate_iters->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
+"border:1px solid black;"));
+        lineEdit_dilate_iters->setAlignment(Qt::AlignCenter);
+        label_RotationMatrix2D_3 = new QLabel(centralwidget);
+        label_RotationMatrix2D_3->setObjectName(QString::fromUtf8("label_RotationMatrix2D_3"));
+        label_RotationMatrix2D_3->setGeometry(QRect(1170, 610, 81, 20));
+        label_RotationMatrix2D_3->setFont(font2);
+        label_RotationMatrix2D_3->setStyleSheet(QString::fromUtf8(""));
+        pB_RotationMatrix2D = new QPushButton(centralwidget);
+        pB_RotationMatrix2D->setObjectName(QString::fromUtf8("pB_RotationMatrix2D"));
+        pB_RotationMatrix2D->setGeometry(QRect(1075, 560, 71, 71));
+        pB_RotationMatrix2D->setMouseTracking(true);
+        pB_RotationMatrix2D->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
+"border:3px solid black;"));
+        blur_6 = new QLabel(centralwidget);
+        blur_6->setObjectName(QString::fromUtf8("blur_6"));
+        blur_6->setGeometry(QRect(1070, 550, 371, 91));
+        blur_6->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
+"border:3px solid black;"));
+        lineEdit_RotationMatrix2D_angle = new QLineEdit(centralwidget);
+        lineEdit_RotationMatrix2D_angle->setObjectName(QString::fromUtf8("lineEdit_RotationMatrix2D_angle"));
+        lineEdit_RotationMatrix2D_angle->setGeometry(QRect(1370, 585, 51, 20));
+        lineEdit_RotationMatrix2D_angle->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
+"border:1px solid black;"));
+        lineEdit_RotationMatrix2D_angle->setAlignment(Qt::AlignCenter);
+        label_RotationMatrix2D_2 = new QLabel(centralwidget);
+        label_RotationMatrix2D_2->setObjectName(QString::fromUtf8("label_RotationMatrix2D_2"));
+        label_RotationMatrix2D_2->setGeometry(QRect(1170, 585, 81, 20));
+        label_RotationMatrix2D_2->setFont(font2);
+        label_RotationMatrix2D_2->setStyleSheet(QString::fromUtf8(""));
+        label_RotationMatrix2D_1 = new QLabel(centralwidget);
+        label_RotationMatrix2D_1->setObjectName(QString::fromUtf8("label_RotationMatrix2D_1"));
+        label_RotationMatrix2D_1->setGeometry(QRect(1170, 560, 81, 20));
+        label_RotationMatrix2D_1->setFont(font2);
+        label_RotationMatrix2D_1->setStyleSheet(QString::fromUtf8(""));
+        lineEdit_RotationMatrix2D_rows = new QLineEdit(centralwidget);
+        lineEdit_RotationMatrix2D_rows->setObjectName(QString::fromUtf8("lineEdit_RotationMatrix2D_rows"));
+        lineEdit_RotationMatrix2D_rows->setGeometry(QRect(1370, 560, 51, 20));
+        lineEdit_RotationMatrix2D_rows->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
+"border:1px solid black;"));
+        lineEdit_RotationMatrix2D_rows->setAlignment(Qt::AlignCenter);
+        lineEdit_RotationMatrix2D_cols = new QLineEdit(centralwidget);
+        lineEdit_RotationMatrix2D_cols->setObjectName(QString::fromUtf8("lineEdit_RotationMatrix2D_cols"));
+        lineEdit_RotationMatrix2D_cols->setGeometry(QRect(1300, 560, 51, 20));
+        lineEdit_RotationMatrix2D_cols->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
+"border:1px solid black;"));
+        lineEdit_RotationMatrix2D_cols->setAlignment(Qt::AlignCenter);
+        lineEdit_RotationMatrix2D_scale = new QLineEdit(centralwidget);
+        lineEdit_RotationMatrix2D_scale->setObjectName(QString::fromUtf8("lineEdit_RotationMatrix2D_scale"));
+        lineEdit_RotationMatrix2D_scale->setGeometry(QRect(1370, 610, 51, 20));
+        lineEdit_RotationMatrix2D_scale->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
+"border:1px solid black;"));
+        lineEdit_RotationMatrix2D_scale->setAlignment(Qt::AlignCenter);
+        lineEdit_gamma_2 = new QLineEdit(centralwidget);
+        lineEdit_gamma_2->setObjectName(QString::fromUtf8("lineEdit_gamma_2"));
+        lineEdit_gamma_2->setGeometry(QRect(1440, 1010, 51, 28));
+        lineEdit_gamma_2->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
+"border:1px solid black;"));
+        lineEdit_gamma_2->setAlignment(Qt::AlignCenter);
+        lineEdit_log_C_2 = new QLineEdit(centralwidget);
+        lineEdit_log_C_2->setObjectName(QString::fromUtf8("lineEdit_log_C_2"));
+        lineEdit_log_C_2->setGeometry(QRect(1440, 970, 51, 28));
+        lineEdit_log_C_2->setStyleSheet(QString::fromUtf8("border-radius: 5px;\n"
+"border:1px solid black;"));
+        lineEdit_log_C_2->setAlignment(Qt::AlignCenter);
+        pB_brightened_2 = new QPushButton(centralwidget);
+        pB_brightened_2->setObjectName(QString::fromUtf8("pB_brightened_2"));
+        pB_brightened_2->setGeometry(QRect(2290, 720, 71, 31));
+        pB_brightened_2->setMouseTracking(true);
+        pB_brightened_2->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
+"border:3px solid black;"));
+        pB_gamma_2 = new QPushButton(centralwidget);
+        pB_gamma_2->setObjectName(QString::fromUtf8("pB_gamma_2"));
+        pB_gamma_2->setGeometry(QRect(1240, 1010, 121, 31));
+        pB_gamma_2->setMouseTracking(true);
+        pB_gamma_2->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
+"border:3px solid black;"));
+        pB_log_2 = new QPushButton(centralwidget);
+        pB_log_2->setObjectName(QString::fromUtf8("pB_log_2"));
+        pB_log_2->setGeometry(QRect(1240, 970, 121, 31));
+        pB_log_2->setMouseTracking(true);
+        pB_log_2->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
+"border:3px solid black;"));
+        label_log_C_3 = new QLabel(centralwidget);
+        label_log_C_3->setObjectName(QString::fromUtf8("label_log_C_3"));
+        label_log_C_3->setGeometry(QRect(1370, 970, 71, 28));
+        label_log_C_3->setFont(font2);
+        label_log_C_3->setStyleSheet(QString::fromUtf8(""));
+        label_log_C_4 = new QLabel(centralwidget);
+        label_log_C_4->setObjectName(QString::fromUtf8("label_log_C_4"));
+        label_log_C_4->setGeometry(QRect(1370, 1010, 71, 28));
+        label_log_C_4->setFont(font2);
+        label_log_C_4->setStyleSheet(QString::fromUtf8(""));
+        label_RotationMatrix2D_4 = new QLabel(centralwidget);
+        label_RotationMatrix2D_4->setObjectName(QString::fromUtf8("label_RotationMatrix2D_4"));
+        label_RotationMatrix2D_4->setGeometry(QRect(1090, 680, 301, 20));
+        label_RotationMatrix2D_4->setFont(font2);
+        label_RotationMatrix2D_4->setStyleSheet(QString::fromUtf8(""));
+        label_RotationMatrix2D_4->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
+        textEdit = new QTextEdit(centralwidget);
+        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        textEdit->setGeometry(QRect(1070, 660, 361, 131));
+        textEdit->setStyleSheet(QString::fromUtf8("border-radius: 12px;\n"
+"border:3px solid black;"));
+        textEdit->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
         MainWindow->setCentralWidget(centralwidget);
+        blur_6->raise();
+        blur_5->raise();
         blur_2->raise();
         blur_3->raise();
         blur->raise();
@@ -1381,6 +1557,30 @@ public:
         label_canny_apertureSize->raise();
         label_canny_threshold1->raise();
         lineEdit_canny_threshold1->raise();
+        label_brightened->raise();
+        pB_brightened->raise();
+        lineEdit_brightened->raise();
+        label_erode_iter->raise();
+        lineEdit_erode_iters->raise();
+        label_dilate_iter->raise();
+        lineEdit_dilate_iters->raise();
+        label_RotationMatrix2D_3->raise();
+        pB_RotationMatrix2D->raise();
+        lineEdit_RotationMatrix2D_angle->raise();
+        label_RotationMatrix2D_2->raise();
+        label_RotationMatrix2D_1->raise();
+        lineEdit_RotationMatrix2D_rows->raise();
+        lineEdit_RotationMatrix2D_cols->raise();
+        lineEdit_RotationMatrix2D_scale->raise();
+        lineEdit_gamma_2->raise();
+        lineEdit_log_C_2->raise();
+        pB_brightened_2->raise();
+        pB_gamma_2->raise();
+        pB_log_2->raise();
+        label_log_C_3->raise();
+        label_log_C_4->raise();
+        label_RotationMatrix2D_4->raise();
+        textEdit->raise();
 
         retranslateUi(MainWindow);
 
@@ -1396,7 +1596,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\345\233\276\347\211\207\345\244\204\347\220\206\345\231\250", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Opencv \345\233\276\347\211\207\347\274\226\350\276\221\345\231\250", nullptr));
         pB_dir_load->setText(QApplication::translate("MainWindow", "\350\275\275\345\205\245\n"
 "\345\233\276\347\211\207", nullptr));
         newimage->setText(QString());
@@ -2037,6 +2237,38 @@ public:
         label_canny_apertureSize->setText(QApplication::translate("MainWindow", "Sobel\347\256\227\345\255\220\345\255\224\345\276\204\345\244\247\345\260\217:", nullptr));
         label_canny_threshold1->setText(QApplication::translate("MainWindow", "\347\254\254\344\270\200\344\270\252\351\230\210\345\200\274:", nullptr));
         lineEdit_canny_threshold1->setText(QApplication::translate("MainWindow", "100", nullptr));
+        blur_5->setText(QString());
+        label_brightened->setText(QApplication::translate("MainWindow", "\344\272\256\345\272\246\345\233\240\345\255\220\357\274\232", nullptr));
+        pB_brightened->setText(QApplication::translate("MainWindow", "\350\260\203\346\225\264\344\272\256\345\272\246", nullptr));
+        lineEdit_brightened->setText(QApplication::translate("MainWindow", "1.0", nullptr));
+        label_erode_iter->setText(QApplication::translate("MainWindow", "\350\277\255\344\273\243\346\225\260:", nullptr));
+        lineEdit_erode_iters->setText(QApplication::translate("MainWindow", "1", nullptr));
+        label_dilate_iter->setText(QApplication::translate("MainWindow", "\350\277\255\344\273\243\346\225\260:", nullptr));
+        lineEdit_dilate_iters->setText(QApplication::translate("MainWindow", "1", nullptr));
+        label_RotationMatrix2D_3->setText(QApplication::translate("MainWindow", "\347\274\251\346\224\276\345\233\240\345\255\220: ", nullptr));
+        pB_RotationMatrix2D->setText(QApplication::translate("MainWindow", "\344\273\277\345\260\204\346\227\213\350\275\254", nullptr));
+        blur_6->setText(QString());
+        lineEdit_RotationMatrix2D_angle->setText(QApplication::translate("MainWindow", "30", nullptr));
+        label_RotationMatrix2D_2->setText(QApplication::translate("MainWindow", "\346\227\213\350\275\254\350\247\222\345\272\246: ", nullptr));
+        label_RotationMatrix2D_1->setText(QApplication::translate("MainWindow", "\345\210\227\350\241\214\345\235\220\346\240\207: ", nullptr));
+        lineEdit_RotationMatrix2D_rows->setText(QApplication::translate("MainWindow", "0", nullptr));
+        lineEdit_RotationMatrix2D_cols->setText(QApplication::translate("MainWindow", "0", nullptr));
+        lineEdit_RotationMatrix2D_scale->setText(QApplication::translate("MainWindow", "1.0", nullptr));
+        lineEdit_gamma_2->setText(QApplication::translate("MainWindow", "0.8", nullptr));
+        lineEdit_log_C_2->setText(QApplication::translate("MainWindow", "10", nullptr));
+        pB_brightened_2->setText(QApplication::translate("MainWindow", "\350\260\203\346\225\264\344\272\256\345\272\246", nullptr));
+        pB_gamma_2->setText(QApplication::translate("MainWindow", "\344\274\275\351\251\254\345\217\230\346\215\242", nullptr));
+        pB_log_2->setText(QApplication::translate("MainWindow", "\345\257\271\346\225\260\345\217\230\346\215\242", nullptr));
+        label_log_C_3->setText(QApplication::translate("MainWindow", "\345\257\271\346\225\260C\345\200\274:", nullptr));
+        label_log_C_4->setText(QApplication::translate("MainWindow", "Gamma\345\200\274:", nullptr));
+        label_RotationMatrix2D_4->setText(QString());
+        textEdit->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">\344\275\234\350\200\205:  GitHub----liuqi34584</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">\351\241\271\347\233\256\345\234\260\345\235\200\357\274\232</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">https://github.com/liuqi34584/opencv_improcessing_tool</span></p></body></html>", nullptr));
     } // retranslateUi
 
 };

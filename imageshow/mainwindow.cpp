@@ -56,11 +56,13 @@ void MainWindow::get_global_state()
     // 刷新 erode 相关的值
     image_state.erode.kernel_hight = std::abs(std::stoi(ui->lineEdit_erode_kernel_hight->text().toStdString()));
     image_state.erode.kernel_width = std::abs(std::stoi(ui->lineEdit_erode_kernel_width->text().toStdString()));
+    image_state.erode.iterations = std::abs(std::stoi(ui->lineEdit_erode_iters->text().toStdString()));
     image_state.erode.StructuringElement = ui->cBox_erode_Structuring->currentIndex();
 
     // 刷新 dilate 相关的值
     image_state.dilate.kernel_hight = std::abs(std::stoi(ui->lineEdit_dilate_kernel_hight->text().toStdString()));
     image_state.dilate.kernel_width = std::abs(std::stoi(ui->lineEdit_dilate_kernel_width->text().toStdString()));
+    image_state.dilate.iterations = std::abs(std::stoi(ui->lineEdit_dilate_iters->text().toStdString()));
     image_state.dilate.StructuringElement = ui->cBox_dilate_Structuring->currentIndex();
 
     // 刷新 padding 相关的值
@@ -103,6 +105,14 @@ void MainWindow::get_global_state()
     image_state.canny.threshold2 = std::abs(std::stoi(ui->lineEdit_canny_threshold2->text().toStdString()));
     image_state.canny.apertureSize = std::abs(std::stoi(ui->lineEdit_canny_apertureSize->text().toStdString()));
 
+    // 刷新 亮度调整 相关的值
+    image_state.brightened.alpha = std::abs(std::stof(ui->lineEdit_brightened->text().toStdString()));
+
+    // 刷新 仿射旋转 相关的值
+    image_state.rotationMatrix2d.center_cols = std::abs(std::stoi(ui->lineEdit_RotationMatrix2D_cols->text().toStdString()));
+    image_state.rotationMatrix2d.center_rows = std::abs(std::stoi(ui->lineEdit_RotationMatrix2D_rows->text().toStdString()));
+    image_state.rotationMatrix2d.angle = std::abs(std::stof(ui->lineEdit_RotationMatrix2D_angle->text().toStdString()));
+    image_state.rotationMatrix2d.scale = std::abs(std::stof(ui->lineEdit_RotationMatrix2D_scale->text().toStdString()));
 }
 
 // 利用界面 label 显示打印信息
@@ -160,6 +170,8 @@ void MainWindow::on_pB_dir_load_clicked()
             Qimshow(ui->newimage, Qnewimg);
 
             Image_info_show();  // 显示图片尺寸，通道信息
+            setprint(filename);
+
         } else setprint("不能识别该路径或文件格式  " + filename);
     } else setprint("未选择图片文件");
 }
@@ -190,6 +202,7 @@ void MainWindow::on_pB_dirs_load_clicked()
                 Qimshow(ui->newimage, Qnewimg);
 
                 Image_info_show();  // 显示图片尺寸，通道信息
+                setprint(filename);
             } else setprint("不能识别该路径或文件格式  " + filename);
         } else setprint("未找到图片");
     } else setprint("未选择文件夹");
@@ -217,6 +230,7 @@ void MainWindow::on_pB_dirs_next_clicked()
             Qimshow(ui->newimage, Qnewimg);
 
             Image_info_show();  // 显示图片尺寸，通道信息
+            setprint(filename);
 
         } else setprint("不能识别该路径或文件格式  " + filename);
     } else setprint("文件夹列表为空");
@@ -245,6 +259,7 @@ void MainWindow::on_pB_dirs_pre_clicked()
 
             Image_info_show();  // 显示图片尺寸，通道信息
 
+            setprint(filename);
         } else setprint("不能识别该路径或文件格式  " + filename);
     } else setprint("文件夹列表为空");
 }
@@ -503,6 +518,7 @@ void MainWindow::on_pB_turn_channels_r_clicked()
     } else setprint("未读取到图片文件");
 }
 
+// 直方图均衡槽函数
 void MainWindow::on_pB_equalizehist_clicked()
 {
     get_global_state();  // 获取全局设置状态
@@ -523,6 +539,7 @@ void MainWindow::on_pB_equalizehist_clicked()
     } else setprint("未读取到图片文件");
 }
 
+// 自动阈值 otsu 槽函数
 void MainWindow::on_pushButton_twovalue_otsu_clicked()
 {
     get_global_state();  // 获取全局设置状态
@@ -545,6 +562,7 @@ void MainWindow::on_pushButton_twovalue_otsu_clicked()
     } else setprint("未读取到图片文件");
 }
 
+// 自动阈值 triangle 槽函数
 void MainWindow::on_pushButton_twovalue_triangle_clicked()
 {
     get_global_state();  // 获取全局设置状态
@@ -567,6 +585,7 @@ void MainWindow::on_pushButton_twovalue_triangle_clicked()
     } else setprint("未读取到图片文件");
 }
 
+// 水平翻转槽函数
 void MainWindow::on_pB_flip_horizontal_clicked()
 {
     get_global_state();  // 获取全局设置状态
@@ -587,6 +606,7 @@ void MainWindow::on_pB_flip_horizontal_clicked()
     } else setprint("未读取到图片文件");
 }
 
+// 垂直翻转槽函数
 void MainWindow::on_pB_flip_vertical_clicked()
 {
     get_global_state();  // 获取全局设置状态
@@ -624,6 +644,7 @@ void MainWindow::on_pB_padding_clicked()
         Qimshow(ui->newimage, Qnewimg);
 
         Image_info_show();  // 显示图片尺寸，通道信息
+
     } else setprint("未读取到图片文件");
 }
 
@@ -644,6 +665,8 @@ void MainWindow::on_pB_gray2color_clicked()
         Qimshow(ui->newimage, Qnewimg);
 
         Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("灰度转彩色变换成功!");
     } else setprint("未读取到图片文件");
 }
 
@@ -664,6 +687,9 @@ void MainWindow::on_pB_log_clicked()
         Qimshow(ui->newimage, Qnewimg);
 
         Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("Log 变换成功！  本次变换对数 C 值为： "  + \
+                 QString::number(image_state.log.C));
     } else setprint("未读取到图片文件");
 }
 
@@ -685,6 +711,9 @@ void MainWindow::on_pB_gamma_clicked()
         Qimshow(ui->newimage, Qnewimg);
 
         Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("Gamma变换成功！  本次变换伽马值为： "  + \
+                 QString::number(image_state.gamma.value));
     } else setprint("未读取到图片文件");
 }
 
@@ -870,6 +899,60 @@ void MainWindow::on_pB_canny_clicked()
 
     } else setprint("未读取到图片文件");
 }
+
+// 亮度调节槽函数
+void MainWindow::on_pB_brightened_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::brightened_turn;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("亮度调节成功!    本次调节亮度因子为： " + \
+                 QString::number(image_state.brightened.alpha));
+
+    } else setprint("未读取到图片文件");
+}
+
+// 仿射旋转槽函数
+void MainWindow::on_pB_RotationMatrix2D_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::rotationMatrix2d_turn;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("仿射旋转成功!    本次调节旋转中心点为： 列:" + \
+                  QString::number(image_state.rotationMatrix2d.center_cols) + \
+                  "行:" + QString::number(image_state.rotationMatrix2d.center_rows) + \
+                  "旋转因子：" + QString::number(image_state.rotationMatrix2d.angle) + \
+                  "缩放因子：" + QString::number(image_state.rotationMatrix2d.scale));
+
+    } else setprint("未读取到图片文件");
+}
+
 
 // 将 newimage 转化为 image
 void MainWindow::on_pB_turn_image_clicked()
