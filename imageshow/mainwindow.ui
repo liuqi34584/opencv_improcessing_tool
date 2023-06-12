@@ -2974,7 +2974,7 @@ border:1px solid black;</string>
      <rect>
       <x>390</x>
       <y>610</y>
-      <width>25</width>
+      <width>51</width>
       <height>25</height>
      </rect>
     </property>
@@ -2995,7 +2995,7 @@ border:1px solid black;</string>
      <rect>
       <x>530</x>
       <y>610</y>
-      <width>25</width>
+      <width>41</width>
       <height>25</height>
      </rect>
     </property>
@@ -3354,7 +3354,7 @@ border:1px solid black;</string>
      <rect>
       <x>765</x>
       <y>510</y>
-      <width>61</width>
+      <width>71</width>
       <height>30</height>
      </rect>
     </property>
@@ -3453,7 +3453,7 @@ border:3px solid black;</string>
      <rect>
       <x>765</x>
       <y>608</y>
-      <width>61</width>
+      <width>71</width>
       <height>30</height>
      </rect>
     </property>
@@ -4000,7 +4000,7 @@ border:3px solid black;</string>
      <rect>
       <x>1170</x>
       <y>510</y>
-      <width>71</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -4019,7 +4019,7 @@ border:3px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_log_C">
     <property name="geometry">
      <rect>
-      <x>1260</x>
+      <x>1270</x>
       <y>510</y>
       <width>51</width>
       <height>20</height>
@@ -4061,7 +4061,7 @@ border:3px solid black;</string>
      <rect>
       <x>1170</x>
       <y>485</y>
-      <width>71</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -4080,7 +4080,7 @@ border:3px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_gamma">
     <property name="geometry">
      <rect>
-      <x>1260</x>
+      <x>1270</x>
       <y>485</y>
       <width>51</width>
       <height>20</height>
@@ -4119,7 +4119,7 @@ border:3px solid black;</string>
      <rect>
       <x>1170</x>
       <y>160</y>
-      <width>91</width>
+      <width>131</width>
       <height>30</height>
      </rect>
     </property>
@@ -4138,7 +4138,7 @@ border:3px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_filter_kernel_hight">
     <property name="geometry">
      <rect>
-      <x>1280</x>
+      <x>1300</x>
       <y>160</y>
       <width>51</width>
       <height>28</height>
@@ -4215,7 +4215,7 @@ border:3px solid black;</string>
    <widget class="QLabel" name="label_X_3">
     <property name="geometry">
      <rect>
-      <x>1345</x>
+      <x>1355</x>
       <y>160</y>
       <width>21</width>
       <height>25</height>
@@ -4278,7 +4278,7 @@ border:3px solid black;</string>
      <rect>
       <x>1170</x>
       <y>300</y>
-      <width>151</width>
+      <width>191</width>
       <height>30</height>
      </rect>
     </property>
@@ -4359,7 +4359,7 @@ border:3px solid black;</string>
      <rect>
       <x>1170</x>
       <y>60</y>
-      <width>141</width>
+      <width>181</width>
       <height>20</height>
      </rect>
     </property>
@@ -4380,7 +4380,7 @@ border:3px solid black;</string>
      <rect>
       <x>1170</x>
       <y>80</y>
-      <width>141</width>
+      <width>181</width>
       <height>30</height>
      </rect>
     </property>
@@ -4401,7 +4401,7 @@ border:3px solid black;</string>
      <rect>
       <x>1170</x>
       <y>105</y>
-      <width>141</width>
+      <width>191</width>
       <height>30</height>
      </rect>
     </property>
@@ -4482,7 +4482,7 @@ border:1px solid black;</string>
      <rect>
       <x>1290</x>
       <y>200</y>
-      <width>121</width>
+      <width>131</width>
       <height>31</height>
      </rect>
     </property>
@@ -4534,7 +4534,7 @@ border:3px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_gaussianblur_kernel_hight">
     <property name="geometry">
      <rect>
-      <x>1280</x>
+      <x>1300</x>
       <y>260</y>
       <width>51</width>
       <height>28</height>
@@ -4554,7 +4554,7 @@ border:1px solid black;</string>
    <widget class="QLabel" name="label_X_4">
     <property name="geometry">
      <rect>
-      <x>1345</x>
+      <x>1355</x>
       <y>260</y>
       <width>21</width>
       <height>25</height>
@@ -4577,7 +4577,7 @@ border:1px solid black;</string>
      <rect>
       <x>1170</x>
       <y>260</y>
-      <width>91</width>
+      <width>121</width>
       <height>30</height>
      </rect>
     </property>
@@ -4656,7 +4656,7 @@ border:3px solid black;</string>
      <rect>
       <x>1170</x>
       <y>380</y>
-      <width>141</width>
+      <width>181</width>
       <height>30</height>
      </rect>
     </property>
@@ -4717,7 +4717,7 @@ border:1px solid black;</string>
      <rect>
       <x>1170</x>
       <y>405</y>
-      <width>161</width>
+      <width>191</width>
       <height>30</height>
      </rect>
     </property>
@@ -4738,7 +4738,7 @@ border:1px solid black;</string>
      <rect>
       <x>1170</x>
       <y>360</y>
-      <width>141</width>
+      <width>181</width>
       <height>20</height>
      </rect>
     </property>
@@ -4796,7 +4796,7 @@ border:3px solid black;</string>
      <rect>
       <x>1170</x>
       <y>460</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -4835,7 +4835,7 @@ border:3px solid black;</string>
    <widget class="QLineEdit" name="lineEdit_brightened">
     <property name="geometry">
      <rect>
-      <x>1260</x>
+      <x>1270</x>
       <y>460</y>
       <width>51</width>
       <height>20</height>
@@ -4857,7 +4857,7 @@ border:1px solid black;</string>
      <rect>
       <x>935</x>
       <y>510</y>
-      <width>61</width>
+      <width>71</width>
       <height>30</height>
      </rect>
     </property>
@@ -4898,7 +4898,7 @@ border:1px solid black;</string>
      <rect>
       <x>938</x>
       <y>610</y>
-      <width>61</width>
+      <width>71</width>
       <height>30</height>
      </rect>
     </property>
@@ -4939,7 +4939,7 @@ border:1px solid black;</string>
      <rect>
       <x>1170</x>
       <y>610</y>
-      <width>81</width>
+      <width>141</width>
       <height>20</height>
      </rect>
     </property>
@@ -5017,7 +5017,7 @@ border:1px solid black;</string>
      <rect>
       <x>1170</x>
       <y>585</y>
-      <width>81</width>
+      <width>121</width>
       <height>20</height>
      </rect>
     </property>
@@ -5038,7 +5038,7 @@ border:1px solid black;</string>
      <rect>
       <x>1170</x>
       <y>560</y>
-      <width>81</width>
+      <width>121</width>
       <height>20</height>
      </rect>
     </property>
@@ -5306,6 +5306,8 @@ p, li { white-space: pre-wrap; }
      <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
     </property>
    </widget>
+   <zorder>erode</zorder>
+   <zorder>label_erode_iter</zorder>
    <zorder>blur_6</zorder>
    <zorder>blur_5</zorder>
    <zorder>blur_2</zorder>
@@ -5314,7 +5316,6 @@ p, li { white-space: pre-wrap; }
    <zorder>erode_2</zorder>
    <zorder>flip_padding</zorder>
    <zorder>dilate</zorder>
-   <zorder>erode</zorder>
    <zorder>dir</zorder>
    <zorder>dirs</zorder>
    <zorder>resize</zorder>
@@ -5414,7 +5415,6 @@ p, li { white-space: pre-wrap; }
    <zorder>label_brightened</zorder>
    <zorder>pB_brightened</zorder>
    <zorder>lineEdit_brightened</zorder>
-   <zorder>label_erode_iter</zorder>
    <zorder>lineEdit_erode_iters</zorder>
    <zorder>label_dilate_iter</zorder>
    <zorder>lineEdit_dilate_iters</zorder>
