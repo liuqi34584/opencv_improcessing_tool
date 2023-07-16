@@ -27,11 +27,11 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
-INCLUDEPATH += D:\appdata\opencv\rebuild_for_qt\install\include \
-               D:\appdata\opencv\rebuild_for_qt\install\include\opencv \
-               D:\appdata\opencv\rebuild_for_qt\include\opencv2
+INCLUDEPATH += C:\appdata\opencv\rebuild_for_qt\install\include \
+               C:\appdata\opencv\rebuild_for_qt\install\include\opencv \
+               C:\appdata\opencv\rebuild_for_qt\include\opencv2
 
-LIBS  +=-L D:\appdata\opencv\rebuild_for_qt\install\x64\mingw\lib\libopencv_*.dll.a
+LIBS  +=-L C:\appdata\opencv\rebuild_for_qt\install\x64\mingw\lib\libopencv_*.dll.a
 
 RESOURCES += \
     images.qrc

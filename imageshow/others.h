@@ -48,7 +48,8 @@ enum mode_set {
     adaptivethreshold,
     canny_turn,
     brightened_turn,
-    rotationMatrix2d_turn
+    rotationMatrix2d_turn,
+    sketch
 };
 
 // 定义阈值相关参数结构体
@@ -146,6 +147,7 @@ struct Brightened {
     float alpha = 1.0;
 };
 
+// 定义 仿射旋转 相关参数结构体
 struct RotationMatrix2d {
     int center_cols = 0;
     int center_rows = 0;
@@ -178,6 +180,7 @@ struct im_state {
     Canny canny;
     Brightened brightened;
     RotationMatrix2d rotationMatrix2d;
+
 };
 
 

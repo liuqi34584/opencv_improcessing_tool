@@ -103,6 +103,8 @@ private slots:
 
 
 
+    void on_pB_sketch_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

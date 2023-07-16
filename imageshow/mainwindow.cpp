@@ -126,23 +126,27 @@ void MainWindow::Image_info_show()
 {
     QString text_str;
     if(!image_state.img.empty()){
-        text_str.sprintf("原图：  高：%d  宽：%d  %d通道", \
-                              image_state.img.rows,image_state.img.cols,image_state.img.channels());
-        ui->label_image_text->setText(text_str);
+        QString message = QString("原图：  高：%1  宽：%2  %3通道")\
+                            .arg(image_state.img.rows)\
+                              .arg(image_state.img.cols)\
+                                .arg(image_state.img.channels());
+        ui->label_image_text->setText(message);
     }
     else{
-        text_str.sprintf("当前数据为空");
+        text_str.asprintf("当前数据为空");
         ui->label_image_text->setText(text_str);
     }
 
     if(!image_state.new_img.empty())
     {
-        text_str.sprintf("处理后图：  高：%d  宽：%d  %d通道", \
-                              image_state.new_img.rows,image_state.new_img.cols,image_state.new_img.channels());
-        ui->label_newimage_text->setText(text_str);
+        QString message = QString("处理后：  高：%1  宽：%2  %3通道")\
+                            .arg(image_state.new_img.rows)\
+                              .arg(image_state.new_img.cols)\
+                               .arg(image_state.new_img.channels());
+        ui->label_newimage_text->setText(message);
     }
     else{
-        text_str.sprintf("当前数据为空");
+        text_str.asprintf("当前数据为空");
         ui->label_newimage_text->setText(text_str);
     }
 }
@@ -953,6 +957,30 @@ void MainWindow::on_pB_RotationMatrix2D_clicked()
     } else setprint("未读取到图片文件");
 }
 
+// 素描功能槽函数
+void MainWindow::on_pB_sketch_clicked()
+{
+    get_global_state();  // 获取全局设置状态
+
+    if (!filename.isEmpty()) {
+
+        image_state.process_mode = mode_set::sketch;
+
+        image_state.new_img = Image_mode(image_state.img, image_state.process_mode);
+
+        QImage Qimg = Mat2QImage(image_state.img);
+        Qimshow(ui->image, Qimg);
+
+        QImage Qnewimg = Mat2QImage(image_state.new_img);
+        Qimshow(ui->newimage, Qnewimg);
+
+        Image_info_show();  // 显示图片尺寸，通道信息
+
+        setprint("素描绘制成功!");
+
+    } else setprint("未读取到图片文件");
+}
+
 
 // 将 newimage 转化为 image
 void MainWindow::on_pB_turn_image_clicked()
@@ -989,4 +1017,5 @@ void MainWindow::on_pB_opencv_show_clicked()
         cv::waitKey(0);
     } else setprint("未选择图片文件");
 }
+
 

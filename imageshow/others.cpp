@@ -182,7 +182,6 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
     }
     if(mode == mode_set::resize)  // 对图片进行resize
     {
-
         cv::Mat resize_mat;
         cv::Size outputSize(image_state.resize.width, image_state.resize.hight);
 
@@ -791,7 +790,6 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
 
         return brightened_mat;
     }
-
     if(mode == mode_set::rotationMatrix2d_turn)  // 旋转仿射变换
     {
         cv::Mat transformMatrix, rotationMatrix2d_mat;
@@ -807,6 +805,20 @@ cv::Mat Image_mode(cv::Mat mat, uint8_t mode)
         cv::warpAffine(mat, rotationMatrix2d_mat, transformMatrix, mat.size());
 
         return rotationMatrix2d_mat;
+    }
+    if(mode == mode_set::sketch) // 素描
+    {
+        cv::Mat gray_mat, medianblur_mat;
+        cv::Mat laplacianImage, threshold_mat, sketch_mat;
+        // 转化为灰度图像
+        cv::cvtColor(mat, gray_mat, cv::COLOR_BGR2GRAY);
+        // 中值滤波
+        cv::medianBlur(gray_mat, medianblur_mat, 7);
+        // 边缘检测
+        cv::Laplacian(medianblur_mat, laplacianImage, CV_16S, 5);
+        cv::threshold(gray_mat, sketch_mat, 80, 255, cv::THRESH_BINARY_INV);
+
+        return sketch_mat;
     }
 
     return mat; //默认返回值
