@@ -157,7 +157,7 @@ void MainWindow::on_pB_dir_load_clicked()
     get_global_state();
 
     MainWindow::filename = QFileDialog::getOpenFileName(this, QStringLiteral("选择图片文件"), "D:",\
-                                            QStringLiteral("类型(*png *jpg *tif *gif)"));
+                                            QStringLiteral("类型(*png *jpg *tif *gif *bmp)"));
 
     if (!filename.isEmpty()) {
         if(isReasonablefile(filename.toStdString()) == true){

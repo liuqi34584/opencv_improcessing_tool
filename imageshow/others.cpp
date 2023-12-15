@@ -876,7 +876,7 @@ bool containChinese(const std::string& str) {
 // 判断文件名是否合理
 bool isReasonablefile(cv::String filename)
 {
-    std::vector<std::string> file_type {".png", ".jpg", ".tif", ".gif"};
+    std::vector<std::string> file_type {".png", ".jpg", ".tif", ".gif", ".bmp"};
 
     // 先检查文件名后缀是否合理
     auto it = std::find(file_type.begin(), file_type.end(), filename.substr(filename.length() - 4));
